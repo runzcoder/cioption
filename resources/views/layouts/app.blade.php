@@ -179,7 +179,7 @@
                             Head Office</h6>
                         <p>Watchmoor Park, Building Eight, Camberley GU15 3YL, United Kingdom</p>
                         <h6><i class="mr-1 mdi mdi-email"> </i>Email Address</h6>
-                        <p>support@dynamoinvestoptions.com</p>
+                        <p>{{env("MAIL_SUPPORT")}}</p>
                     </div>
                 </div>
                 <!--end col-->

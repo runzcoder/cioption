@@ -279,7 +279,7 @@
                                     <p>Use the below link to invite your friends.</p>
                                     <div class="mb-3 input-group">
                                         <input type="text" class="form-control myInput readonly"
-                                            value={{ url('/?referred_by=' . $_loggedUser->username) }} id="reflink"
+                                            value={{ url('/register?referred_by=' . $_loggedUser->username) }} id="reflink"
                                             readonly>
                                         <div class="input-group-append">
                                             <button

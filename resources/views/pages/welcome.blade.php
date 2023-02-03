@@ -15,7 +15,7 @@
                         <h1 class="mb-3 heading">The Better Way to Trade &amp; Invest</h1>
                         <p class="para-desck text-dark">{{ env('APP_NAME') }} helps over 2 million customers achieve their financial goals by helping them trade and invest with ease.Join our mission for sustainable forest management and trade by investing in our company. Purchase shares on the stock market or explore private investment options for long-term returns and impact.</p>
                         <div class="mt-4">
-                            <a href="register.html" class="pt-3 pb-3 pl-4 pr-4 btn btn-primary">Create Free
+                            <a href="/register" class="pt-3 pb-3 pl-4 pr-4 btn btn-primary">Create Free
                                 Account
                             </a>
                         </div>
@@ -604,61 +604,5 @@
     </section>
     <!-- End Sign up Section  -->
 
-
-    
-    
-    
-    
-    <!-- Footer Start -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="pb-0 mb-0 col-lg-4 col-12 mb-md-4 pb-md-2">
-                    <h5 class="text-light footer-head">{{ env('APP_NAME') }} OPTIONS</h5>
-                    <p class="mt-4">We are online</p>
-
-                    <ul class="mt-4 mb-0 list-unstyled social-icon social">
-                        <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
-                                    data-feather="facebook" class="fea icon-sm fea-social"></i></a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
-                                    data-feather="instagram" class="fea icon-sm fea-social"></i></a></li>
-                        <li class="list-inline-item"><a href="javascript:void(0)" class="rounded"><i
-                                    data-feather="twitter" class="fea icon-sm fea-social"></i></a></li>
-                    </ul>
-                    <!--end icon-->
-
-                </div>
-                <!--end col-->
-
-                <div class="pt-2 mt-4 col-lg-4 col-md-4 mt-sm-0 pt-sm-0">
-                    <h5 class="text-light footer-head">Useful Links</h5>
-                    <ul class="mt-4 list-unstyled footer-list">
-                        <li><a href="" class="text-foot"><i class="mr-1 mdi mdi-chevron-right"></i>
-                                Home</a></li>
-                        <li><a href="about.html" class="text-foot"><i class="mr-1 mdi mdi-chevron-right"></i>
-                                About us</a></li>
-                        <li><a href="contact.html" class="text-foot"><i class="mr-1 mdi mdi-chevron-right"></i>
-                                Contact Us</a></li>
-                        <li><a href="faq.html" class="text-foot"><i class="mr-1 mdi mdi-chevron-right"></i>
-                                Faq</a></li>
-                    </ul>
-                </div>
-                <!--end col-->
-
-                <div class="pt-2 mt-4 col-lg-4 col-md-4 mt-sm-0 pt-sm-0">
-                    <h5 class="text-light footer-head">Contact Details</h5>
-                    <div class="mt-2">
-                        <h6 class="text-foot"><i class="mr-1 mdi mdi-home"> </i>
-                            Head Office</h6>
-                        <p>Watchmoor Park, Building Eight, Camberley GU15 3YL, United Kingdom</p>
-                        <h6><i class="mr-1 mdi mdi-email"> </i>Email Address</h6>
-                        <p>support@dynamoinvestoptions.com</p>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-        </div>
-        <!--end container-->
 
 @endsection
