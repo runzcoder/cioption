@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('investments', function (Blueprint $table) {
             $table->id();
-            $table->string("user_id")->nullable();
+            $table->string("user_id");
             $table->string("currency_id")->nullable();
-            $table->string("investment_type_id")->nullable();
-            $table->string("amount")->nullable();
-            $table->datetime("cancelled_at");
+            $table->string("investment_type_id");
+            $table->string("amount");
+            $table->datetime("cancelled_at")->nullable();
+            $table->datetime("next_due_date")->nullable();
             $table->enum("status", ["pending","running","cancelled","declined", "finished"])->default("running");
-            $table->string("approved_by");
+            $table->string("approved_by")->nullable();
             $table->timestamps();
         });
     }

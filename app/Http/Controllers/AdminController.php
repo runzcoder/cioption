@@ -6,6 +6,7 @@ use App\Models\Currency;
 use App\Models\Deposit;
 use App\Models\InvestmentType;
 use App\Models\PayOption;
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -207,5 +208,51 @@ class AdminController extends Controller
         }
         
         return redirect()->back()->with("failed", "Record not found");
+    }
+
+
+    //Settings
+
+    public function settings()
+    {
+        return view("admin.settings");
+    }
+
+    public function createSetting(Request $request)
+    {
+        $request->validate([
+            "name" => "required",
+            "value" => "required"
+        ]);
+
+       Setting::create($request->all());
+        return redirect()->back()->with("success", "Settings added");
+    }
+
+    public function editSetting(Request $request)
+    {
+        $request->validate([
+            "id" => "required",
+            "name" => "required",
+            "value" => "required"
+        ]);
+        $setting = Setting::find($request->id);
+        if ($setting)
+        {
+            $setting->name = $request->name; 
+            $setting->value = $request->value;
+            $setting->save();
+        return redirect()->back()->with("success", "Settings added");
+        }
+        return redirect()->back()->with("failed", "Settings  not found");
+    }
+
+    public function deleteSetting(Request $request)
+    {
+        $request->validate([
+            "id" => "required"
+        ]);
+        Setting::destroy($request->id);
+        return redirect()->back()->with("success", "Settings deleted");
     }
 }

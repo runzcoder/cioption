@@ -42,6 +42,14 @@ Route::get('/admin/view_deposit/{id}', [App\Http\Controllers\AdminController::cl
 Route::get('/admin/approve_deposit/{id}', [App\Http\Controllers\AdminController::class, 'approveDeposit'])->name('admin.approve_deposit');
 Route::get('/admin/decline_deposit/{id}', [App\Http\Controllers\AdminController::class, 'declineDeposit'])->name('admin.decline_deposit');
 
+
+Route::get('/admin/settings', [App\Http\Controllers\AdminController::class, 'settings'])->name('admin.settings');
+Route::post('/admin/add_settings', [App\Http\Controllers\AdminController::class, 'createSetting'])->name('admin.add_settings');
+Route::post('/admin/edit_settings', [App\Http\Controllers\AdminController::class, 'editSetting'])->name('admin.edit_settings');
+Route::post('/admin/delete_settings', [App\Http\Controllers\AdminController::class, 'deleteSetting'])->name('admin.delete_settings');
+
+
+
 ///// USERS ROUTES
 Route::get('/dashboard/deposit_view', [App\Http\Controllers\DashboardController::class, 'depositView'])->name('dashboard.deposit_view');
 Route::post('/dashboard/submit_deposit', [App\Http\Controllers\DashboardController::class, 'submitDeposit'])->name('dashboard.submit_deposit');
@@ -49,7 +57,12 @@ Route::get('/dashboard/deposit_confirm/{id}/{only_data?}', [App\Http\Controllers
 Route::post('/dashboard/upload_proof', [App\Http\Controllers\DashboardController::class, 'uploadProof'])->name('dashboard.upload_proof');
 Route::get('/dashboard/cancel_deposit/{id}', [App\Http\Controllers\DashboardController::class, 'cancelDeposit'])->name('dashboard.cancel_deposit');
 Route::get('/dashboard/create_investment/{id?}', [App\Http\Controllers\DashboardController::class, 'createInvestment'])->name('dashboard.create_investment');
-
+Route::post('/dashboard/save_investment', [App\Http\Controllers\DashboardController::class, 'saveInvestment'])->name('dashboard.save_investment');
+Route::post('/dashboard/cancel_investment/', [App\Http\Controllers\DashboardController::class, 'cancelInvestment'])->name('dashboard.cancel_investment');
+Route::get('/dashboard/profits/', [App\Http\Controllers\DashboardController::class, 'profits'])->name('dashboard.profits');
+Route::get('/dashboard/trx/', [App\Http\Controllers\DashboardController::class, 'trx'])->name('dashboard.trx');
+Route::get('/dashboard/plans/', [App\Http\Controllers\DashboardController::class, 'plans'])->name('dashboard.plans');
+Route::get('/dashboard/referrals/', [App\Http\Controllers\DashboardController::class, 'referrals'])->name('dashboard.referrals');
 
 //// GENERAL ROUTES
 Route::get("/get_pay_options", [App\Http\Controllers\DashboardController::class, 'getPayOptions'])->name('dashboard.get_pay_options');

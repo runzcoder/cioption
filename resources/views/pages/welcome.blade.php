@@ -13,7 +13,7 @@
                             <span class="content ">Trade Invest stock, and Bond</span>
                         </div>
                         <h1 class="mb-3 heading">The Better Way to Trade &amp; Invest</h1>
-                        <p class="para-desck text-dark">{{ env('APP_NAME') }} {{ env('APP_NAME') }} helps over 2 million customers achieve their financial goals by helping them trade and invest with ease.Join our mission for sustainable forest management and trade by investing in our company. Purchase shares on the stock market or explore private investment options for long-term returns and impact.</p>
+                        <p class="para-desck text-dark">{{ env('APP_NAME') }} helps over 2 million customers achieve their financial goals by helping them trade and invest with ease.Join our mission for sustainable forest management and trade by investing in our company. Purchase shares on the stock market or explore private investment options for long-term returns and impact.</p>
                         <div class="mt-4">
                             <a href="register.html" class="pt-3 pb-3 pl-4 pr-4 btn btn-primary">Create Free
                                 Account

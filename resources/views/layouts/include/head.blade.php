@@ -7,4 +7,10 @@
   <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <style>
+      .shadow-sm{
+          display:none;
+      }
+  </style>
+
     

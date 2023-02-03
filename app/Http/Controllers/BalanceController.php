@@ -28,10 +28,14 @@ class BalanceController extends Controller
         $update_type =='transfer'
         )
         {
+            if($amount > $user->balance)
+            {
+                throw throw new \ErrorException("Insufficient amount");
+            }
             $balance -= $amount;
         }
         else{
-            throw "Invalid update type";
+            throw throw new \ErrorException("Invalid update type");
         }
 
         $user->balance = $balance;

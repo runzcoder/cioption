@@ -10,4 +10,9 @@ class Investment extends Model
     use HasFactory;
 
     protected $guarded = [];
+    
+    public function investmentType()
+    {
+        return $this->belongsTo(InvestmentType::class, "investment_type_id");
+    }
 }

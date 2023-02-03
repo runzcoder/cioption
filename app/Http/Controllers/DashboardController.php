@@ -7,8 +7,12 @@ use App\Models\Deposit;
 use App\Models\Investment;
 use App\Models\InvestmentType;
 use App\Models\PayOption;
+use App\Models\Referral;
+use App\Models\TransactionHistory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -81,32 +85,98 @@ class DashboardController extends Controller
     public function cancelDeposit($id)
     {
         $deposit = Deposit::find($id);
-        if($deposit && $deposit->status == "pending" && $deposit->user_id == Auth::user()->id)
-        {
+        if ($deposit && $deposit->status == "pending" && $deposit->user_id == Auth::user()->id) {
             $deposit->status = "cancelled";
             $deposit->save();
             return redirect()->back()->with("success", "Deposit Cancelled");
         }
-        
+
         return redirect()->back()->with("failed", "Record not found");
     }
 
-    public function createInvestment($id=null)
+    public function createInvestment($id = null)
     {
-        $investmentType = InvestmentType::where("active", "yes")->get();
-       if (count($investmentType) > 0)
-       {
-        if ($id == null){
-            $selectedType = $investmentType[0];
-        }
-        else {
-            $selectedType = InvestmentType::find($id);
+        $investmentTypes = InvestmentType::where("active", "yes")->get();
+        if (count($investmentTypes) > 0) {
+            if ($id == null) {
+                $selectedType = $investmentTypes[0];
+            } else {
+                $selectedType = InvestmentType::find($id);
+            }
+
+            return view("pages.create_investment")->with("investmentTypes", $investmentTypes)
+                ->with("selectedType", $selectedType);
         }
 
-        return view("pages.create_investment")->with("investmentTypes", $investmentType)
-                                            ->with("selectedType", $selectedType);
-       }
+        return redirect()->back()->with("failed", "Investment packages not available");
+    }
 
-       return redirect()->back()->with("failed", "Investment packages not available");
+    public function saveInvestment(Request $request)
+    {
+        $request->validate([
+            "investment_type_id" => "required",
+            "amount" => "required"
+        ]);
+
+        $investment_type = InvestmentType::find($request->investment_type_id);
+
+        if ($investment_type) {
+            DB::transaction(function () use ($request, $investment_type) {
+                $investment = Investment::create(
+                    [
+                        "user_id" => Auth::user()->id,
+                        "investment_type_id" => $request->investment_type_id,
+                        "amount" => $request->amount,
+                        "next_due_date" => InvestmentController::getNextDueDate($investment_type->duration)
+                    ]
+                );
+
+                BalanceController::updateBalance(Auth::user()->id, "invest", $request->amount, null, "Investment");
+            });
+            return redirect("dashboard")->with("success", "Investment created");
+        }
+        return redirect()->back()->with("failed", "Invalid investment type");
+    }
+
+    public function cancelInvestment(Request $request)
+    {
+        $request->validate([
+            "id" => "required"
+        ]);
+
+        $item = Investment::find($request->id);
+        DB::transaction(function () use ($item, $request) {
+            if ($item && $item->status == "running" && $item->user_id == Auth::user()->id) {
+                $item->status = "cancelled";
+                $item->save();
+                BalanceController::updateBalance(Auth::user()->id, "funding", $item->amount, null, "Cancelled investment");
+                return redirect()->back()->with("success", "Investment cancelled");
+            }
+        });
+
+        return redirect()->back()->with("failed", "Investment not found");
+    }
+
+    public function profits()
+    {
+        $profits = TransactionHistory::orderBy("id", "desc")->where("user_id", Auth::user()->id)->where("type", "profit")->paginate(5);
+        return view("pages.profits")->with("profits", $profits);
+    }
+
+    public function trx()
+    {
+        $trx = TransactionHistory::orderBy("id", "desc")->where("user_id", Auth::user()->id)->paginate(10);
+        return view("pages.trx")->with("trx", $trx);
+    }
+
+    public function plans()
+    {
+        return view("pages.plans");
+    }
+
+    public function referrals()
+    {
+        $referrals = Referral::orderBy("id", "desc")->where("referred_by", Auth::user()->username)->paginate(10);
+        return view("pages.referrals")->with("referrals", $referrals);
     }
 }

@@ -214,6 +214,12 @@
                                         <span class="">Deposits</span>
                                     </button>
                                 </a>
+                                <a href="{{ route('admin.settings') }}" class="text-sm btn  ">
+                                    <button class="btn btn-primary">
+
+                                        <span class="">Settings</span>
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
