@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('transaction_histories', function (Blueprint $table) {
             $table->id();
             $table->string("user_id");
-            $table->enum("type", ["funding", "invest", "withdrawal", "transfer"]);
-            $table->string("currency_id");
+            $table->enum("type", ["funding", "invest", "withdrawal", "transfer", "reward", "profit"]);
+            $table->string("currency_id")->nullable();
+            $table->string("description")->nullable();
             $table->string("amount");
             $table->timestamps();
         });

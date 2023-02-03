@@ -5,6 +5,9 @@
     <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ env('APP_NAME') }} | User Account Dashboard</title>
     <link rel="icon"
         href="https://dynamoinvestoptions.com/storage/app/public/photos/4uqMp6F8srvXHwjUAUEp47JoMiQadStJa6bBCQBR.png"
@@ -19,8 +22,11 @@
     <link rel="stylesheet" href="{{ asset('_eji/css/purpose.css') }}">
     <link rel="stylesheet" href="{{ asset('_eji/css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('_eji/css/sweetalert2.min.css') }}">
+
     {{-- Bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    @include('layouts.include.head')
 
     <script src="{{ asset('_eji/js/sweetalert.min.js ') }}"></script>
     <link rel="stylesheet" type="text/css"
@@ -32,6 +38,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 
+
+
     <link rel="stylesheet" href="{{ asset('_eji/css/style.css') }}">
 
     <style>
@@ -41,6 +49,10 @@
             background-color:rgb(59, 55, 55);
         } */
     </style>
+
+
+
+
 
 
 </head>
@@ -54,7 +66,7 @@
                     <div class="container-fluid">
                         <!-- Brand + Toggler (for mobile devices) -->
                         <div class="pl-4 d-block">
-                            <a class="navbar-brand" href="{{route("dashboard")}}">
+                            <a class="navbar-brand" href="{{ route('dashboard') }}">
                                 <img width="100px" height="150px"
                                     src="{{ asset('_eji/images/ZSB7XIxutSXh8sFDA20EQDMWBdVY7wW9tl33mFFr.jpg') }}"
                                     class="navbar-brand-img" alt="...">
@@ -82,7 +94,7 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
                                         <h6 class="px-0 dropdown-header">Hi,</h6>
-                                        <a href="{{route("dashboard")}}" class="dropdown-item">
+                                        <a href="{{ route('dashboard') }}" class="dropdown-item">
 
                                             <span class="avatar avatar-sm rounded-circle"> <img
                                                     src="https://th.bing.com/th/id/OIP.NVgDAkBBANO4lnKq3Xqg1wHaHa?w=209&h=209&c=7&r=0&o=5&pid=1.7"
@@ -91,14 +103,14 @@
                                         </a>
                                         <div class="dropdown-divider"></div>
 
-                                       <form action="{{route("logout")}}" method="post">
-                                        @csrf
-                                        <button class="dropdown-item text-danger">
-                                            <img src="https://th.bing.com/th?id=OIP.aUm0uqiQz8c0nhT_VEKqYwHaHq&w=245&h=254&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
-                                                width="30%" alt="">
-                                            <span>Logout</span>
-                                        </button>
-                                       </form>
+                                        <form action="{{ route('logout') }}" method="post">
+                                            @csrf
+                                            <button class="dropdown-item text-danger">
+                                                <img src="https://th.bing.com/th?id=OIP.aUm0uqiQz8c0nhT_VEKqYwHaHq&w=245&h=254&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
+                                                    width="30%" alt="">
+                                                <span>Logout</span>
+                                            </button>
+                                        </form>
                                     </div>
                                 </li>
                             </ul>
@@ -133,7 +145,7 @@
                                     <div
                                         class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
                                         <h6 class="px-0 dropdown-header">Hi, </h6>
-                                        <a href="{{route("dashboard")}}" class="dropdown-item">
+                                        <a href="{{ route('dashboard') }}" class="dropdown-item">
 
                                             <img src="https://th.bing.com/th/id/OIP.NVgDAkBBANO4lnKq3Xqg1wHaHa?w=209&h=209&c=7&r=0&o=5&pid=1.7"
                                                 width="30%" alt="" srcset="">
@@ -141,18 +153,18 @@
                                         </a>
                                         <div class="dropdown-divider"></div>
 
-                                        
-                                        <a class="dropdown-item text-danger" style="display:flex; flex-direction: row" >
+
+                                        <a class="dropdown-item text-danger"
+                                            style="display:flex; flex-direction: row">
                                             <img src="https://th.bing.com/th?id=OIP.aUm0uqiQz8c0nhT_VEKqYwHaHq&w=245&h=254&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
                                                 width="30%" alt="">
-                                                <form id="logout-form" action="{{route("logout")}}" method="POST"
-                                                
-                                                    style=""> <input type="submit" value="Logout">
-                                                    @csrf
-                                        
-                                            <input type="hidden" name="" value="">
-                                        </form>
-                                    </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style=""> <input type="submit" value="Logout">
+                                                @csrf
+
+                                                <input type="hidden" name="" value="">
+                                            </form>
+                                        </a>
                                     </div>
                                 </li>
                             </ul>
@@ -165,34 +177,41 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-12">
-                                 
+
                                 <a href="{{ route('admin.users') }}" class="text-sm btn  ">
                                     <button class="btn btn-primary">
-                                        
+
                                         <span class="">Users</span>
                                     </button>
                                 </a>
 
                                 <a href="{{ route('currency') }}" class="text-sm btn  ">
                                     <button class="btn btn-primary">
-                                        
+
                                         <span class="">Currency</span>
                                     </button>
                                 </a>
-                                
+
                                 <a href="{{ route('payoption') }}" class="text-sm btn  ">
                                     <button class="btn btn-primary">
-                                        
+
                                         <span class="">Payment Option</span>
                                     </button>
                                 </a>
-            
-                               
-                            
+
+
+
                                 <a href="{{ route('admin.investment_type') }}" class="text-sm btn  ">
                                     <button class="btn btn-primary">
-                                        
+
                                         <span class="">Investment Type</span>
+                                    </button>
+                                </a>
+
+                                <a href="{{ route('admin.deposits') }}" class="text-sm btn  ">
+                                    <button class="btn btn-primary">
+
+                                        <span class="">Deposits</span>
                                     </button>
                                 </a>
                             </div>
@@ -215,8 +234,10 @@
     </div>
     <script type="text/javascript" src="https//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
+    {{--  jquery scripts --}}
 
-    <!-- Scripts -->
+   
+
     <!-- Core JS - includes jquery, bootstrap, popper, in-view and sticky-kit -->
     <script src="{{ asset('_eji/js/purpose.core.js') }}"></script>
     <!-- Page JS -->

@@ -1,0 +1,3 @@
+window.setCoinList = () => {
+    document.getElementById()
+}

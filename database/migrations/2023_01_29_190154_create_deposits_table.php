@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('deposits', function (Blueprint $table) {
             $table->id();
-            $table->string("currency_id");
+            $table->string("pay_options_id");
             $table->string("user_id");
             $table->string("dollar_rate");
             $table->string("amount"); 
             $table->enum("status", ["pending", "cancelled","declined", "approved"])->default("pending");
-            $table->string("payment_proof");
-            $table->string("approved_by");
+            $table->string("payment_proof")->nullable();
+            $table->string("approved_by")->nullable();
             $table->timestamps();
         });
     }

@@ -19,7 +19,7 @@
                                         <div class="col">
                                             <h6 class="mb-1 text-muted">Account balance</h6>
                                             <span
-                                                class="mb-0 h5 font-weight-bold">$0.00</span>
+                                                class="mb-0 h5 font-weight-bold">${{$_loggedUser->balance}}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
@@ -39,7 +39,7 @@
                                         <div class="col">
                                             <h6 class="mb-1 text-muted">Total Profit</h6>
                                             <span
-                                                class="mb-0 h5 font-weight-bold">$0.00</span>
+                                                class="mb-0 h5 font-weight-bold">${{$_loggedUser->trx->where("type", "profit")->sum("amount")}}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
@@ -58,7 +58,7 @@
                                         <div class="col">
                                             <h6 class="mb-1 text-muted">Bonus</h6>
                                             <span
-                                                class="mb-0 h5 font-weight-bold">$0.00</span>
+                                                class="mb-0 h5 font-weight-bold">${{$_loggedUser->trx->where("type", "bonus")->sum("amount")}}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
@@ -77,7 +77,7 @@
                                         <div class="col">
                                             <h6 class="mb-1 text-muted">Referral Bonus</h6>
                                             <span
-                                                class="mb-0 h5 font-weight-bold">$0.00</span>
+                                                class="mb-0 h5 font-weight-bold">${{$_loggedUser->trx->where("type", "reward")->sum("amount")}}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
@@ -97,7 +97,7 @@
                                             <h6 class="mb-1 text-muted">Total Deposit</h6>
                                             <span class="mb-0 h5 font-weight-bold">
                                                                                                                                                     <span
-                                                        class="mb-0 h5 font-weight-bold ">$0.00</span>
+                                                        class="mb-0 h5 font-weight-bold ">${{$_loggedUser->deposits->where("status", "approved")->sum("amount")}}</span>
                                                                                                                                         </span>
                                         </div>
                                         <div class="col-auto">
@@ -145,7 +145,7 @@
                                         <div class="py-4 card">
                                             <div class="text-center card-body">
                                                 <p>You do not have an active investment plan at the moment.</p>
-                                                <a href="Main-Plans.html" class="px-3 btn btn-primary">Buy a
+                                                <a href="/dashboard/create_investment/" class="px-3 btn btn-primary">Buy a
                                                     plan</a>
                                             </div>
                                         </div>
@@ -166,11 +166,11 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="mb-2 text-right">
+                                    {{-- <div class="mb-2 text-right">
                                         <a href="wh.html"> <img src="https://th.bing.com/th?q=Windows+Clipboard+Icon&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=en-WW&cc=NG&setlang=en&adlt=moderate&t=1&mw=247" width="2%" alt=""> View
                                             all
                                             transactions</a>
-                                    </div>
+                                    </div> --}}
                                     <div class=" table-responsive">
                                         <table class="table table-striped">
                                             <thead>
@@ -181,10 +181,17 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                                                                    <td colspan="3">
+                                                @if(count($_trx->where("user_id", Auth::user()->id)) < 1)
+                                                <td colspan="3">
                                                         No record yet
                                                     </td>
-                                                
+                                                @else
+                                                    @foreach($_trx->where("user_id", Auth::user()->id) as $tx)
+                                                        <td class="alert">{{$tx->created_at}}</td>
+                                                        <td class="alert">{{ucfirst($tx->type)}}</td>
+                                                        <td class="alert">${{$tx->amount}}</td>
+                                                    @endforeach
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -203,9 +210,9 @@
                                     <p>Use the below link to invite your friends.</p>
                                     <div class="mb-3 input-group">
                                         <input type="text" class="form-control myInput readonly"
-                                            value="" id="reflink" readonly>
+                                            value={{url("/?referred_by=".$_loggedUser->username)}} id="reflink" readonly>
                                         <div class="input-group-append">
-                                            <button class="btn btn-outline-primary bg-gradient-wa" type="button">
+                                            <button onclick="navigator.clipboard.writeText(document.getElementById('reflink').value); alert('Copied')" class="btn btn-outline-primary bg-gradient-wa" type="button">
                                                 <img src="https://th.bing.com/th?q=Copy+Link+Icon&w=120&h=120&c=1&rs=1&qlt=90&cb=1&pid=InlineBlock&mkt=en-WW&cc=NG&setlang=en&adlt=moderate&t=1&mw=247" width="20%" alt="">
                                             </button>
                                         </div>

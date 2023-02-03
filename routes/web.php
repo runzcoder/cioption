@@ -37,13 +37,22 @@ Route::post('/admin/delete_investment_type/{id}', [App\Http\Controllers\AdminCon
 Route::get('/admin/users', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
 
 
+Route::get('/admin/deposits', [App\Http\Controllers\AdminController::class, 'deposits'])->name('admin.deposits');
+Route::get('/admin/view_deposit/{id}', [App\Http\Controllers\AdminController::class, 'viewDeposits'])->name('admin.view_deposit');
+Route::get('/admin/approve_deposit/{id}', [App\Http\Controllers\AdminController::class, 'approveDeposit'])->name('admin.approve_deposit');
+Route::get('/admin/decline_deposit/{id}', [App\Http\Controllers\AdminController::class, 'declineDeposit'])->name('admin.decline_deposit');
+
 ///// USERS ROUTES
 Route::get('/dashboard/deposit_view', [App\Http\Controllers\DashboardController::class, 'depositView'])->name('dashboard.deposit_view');
 Route::post('/dashboard/submit_deposit', [App\Http\Controllers\DashboardController::class, 'submitDeposit'])->name('dashboard.submit_deposit');
-
+Route::get('/dashboard/deposit_confirm/{id}/{only_data?}', [App\Http\Controllers\DashboardController::class, 'depositConfirm'])->name('dashboard.deposit_confirm');
+Route::post('/dashboard/upload_proof', [App\Http\Controllers\DashboardController::class, 'uploadProof'])->name('dashboard.upload_proof');
+Route::get('/dashboard/cancel_deposit/{id}', [App\Http\Controllers\DashboardController::class, 'cancelDeposit'])->name('dashboard.cancel_deposit');
+Route::get('/dashboard/create_investment/{id?}', [App\Http\Controllers\DashboardController::class, 'createInvestment'])->name('dashboard.create_investment');
 
 
 //// GENERAL ROUTES
+Route::get("/get_pay_options", [App\Http\Controllers\DashboardController::class, 'getPayOptions'])->name('dashboard.get_pay_options');
 
 Route::get('/', function () {
     return view('pages.welcome');

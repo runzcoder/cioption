@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Currency;
+use App\Models\Deposit;
 use App\Models\InvestmentType;
 use App\Models\PayOption;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -106,11 +108,12 @@ class AdminController extends Controller
 
 
     //////// Investment types
-    public function investmentType(){
+    public function investmentType()
+    {
         $investment_types = InvestmentType::all();
         return view("admin.investment_type")->with("investment_types", $investment_types);
     }
-    
+
     public function addInvestmentType(Request $request)
     {
         $request->validate([
@@ -150,8 +153,59 @@ class AdminController extends Controller
 
     /////Users
 
-    public function users(){
+    public function users()
+    {
         $users = User::paginate(10);
         return view("admin.users")->with("users", $users);
+    }
+
+
+    //// DEPOSITS
+
+    public function deposits()
+    {
+        $deposits = Deposit::orderBy("id", "desc")->paginate(10);
+        return view("admin.deposits")->with("deposits", $deposits);
+    }
+
+    public function viewDeposits($id)
+    {
+        $deposit = Deposit::find($id);
+        $user = User::find($deposit->user_id);
+        return view("admin.view_deposit")->with("deposit", $deposit)->with("user", $user);
+    }
+
+    public static function approveDeposit($id)
+    {
+        $deposit = Deposit::where("id", $id)->where("status", "pending")->get();
+
+        if (count($deposit) > 0) {
+            $deposit = $deposit[0];
+            $user = User::find($deposit->user_id);
+            if ($user) {
+                if (BalanceController::updateBalance($user->id, "funding", $deposit->amount, $deposit->payOption->currency->name, "Funding")) {
+                    $depo = Deposit::find($deposit->id);
+                    $depo->status = "approved";
+                    $depo->approved_by = Auth::user()->id;
+                    $depo->save();
+                    return redirect()->back()->with("success", "Account credited");
+                }
+            }
+        }
+
+        return redirect()->back()->with("failed", "Deposit record not found");
+    }
+
+    public function declineDeposit($id)
+    {
+        $deposit = Deposit::find($id);
+        if($deposit && $deposit->status == "pending")
+        {
+            $deposit->status = "declined";
+            $deposit->save();
+            return redirect()->back()->with("success", "Deposit Declined");
+        }
+        
+        return redirect()->back()->with("failed", "Record not found");
     }
 }

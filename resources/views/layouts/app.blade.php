@@ -15,7 +15,8 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+  
+    @include("layouts.include.head")
 
     <script src="//code.jivosite.com/widget/1GEO6kFpzo" async></script>
 
@@ -51,6 +52,7 @@
     <link href='{{ asset('_eji/css/style.css') }}' rel="stylesheet" type="text/css" />
     <link href='{{ asset('_eji/css/gallery-1.css') }}' rel="stylesheet">
     <!-- other links -->
+
 </head>
 
 <body>
