@@ -11,7 +11,7 @@
                     <div class="col-3">reward</div>
                     <div class="col-3">Action</div>
                 </div>
-                @foreach ($referrals as $referral)
+                @foreach ($referrals->where("referred_by", Auth::user()->username) as $referral)
                     <div class="alert alert-primary row">
                         <div class="col-3">{{$loop->index + 1}}</div>
                         <div class="col-3">{{$referral->user->name}}</div>

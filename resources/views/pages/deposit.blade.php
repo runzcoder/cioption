@@ -28,7 +28,7 @@
                         @if (count($deposits) < 1)
                             <div class="alert alert-info">No deposit history</div>
                         @else
-                            @foreach ($deposits as $deposit)
+                            @foreach ($deposits->where("id", Auth::user()->id) as $deposit)
                                 <div class="row alert alert-info">
                                     <div class="col-2"> <img width="30px" src={{ $deposit->payOption->currency->image }}
                                             alt=""> {{ strtoupper($deposit->payOption->currency->symbol) }}</div>

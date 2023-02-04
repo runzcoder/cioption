@@ -13,22 +13,20 @@
                     <h4 class="title">Contact Us</h4>
                     <div class="page-next">
                         <nav aria-label="breadcrumb" class="d-inline-block">
-                            <ul class="mb-0 bg-white rounded shadow breadcrumb">
-                                <li class="breadcrumb-item">
+                            {{-- <ul class="mb-0 bg-white rounded shadow breadcrumb">
+                                <i class="bi bi-chevron-right">
                                     <a href="/">{{env("APP_NAME")}}</a>
                                 </li>
 
                                 <li class="breadcrumb-item active" aria-current="page">Contact Us</li>
-                            </ul>
+                            </ul> --}}
                         </nav>
                     </div>
                 </div>
             </div>
-            <!--end col-->
+            
         </div>
-        <!--end row-->
     </div>
-    <!--end container-->
 </section>
 <!--end section-->
 <!-- Hero End -->

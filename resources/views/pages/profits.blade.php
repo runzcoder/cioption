@@ -11,7 +11,7 @@
                     <div class="col-3">Type</div>
                     <div class="col-3">Date</div>
                 </div>
-                @foreach ($profits as $profit)
+                @foreach ($profits->where("user_id", Auth::user()->id) as $profit)
                     <div class="alert alert-primary row">
                         <div class="col-3">{{$loop->index + 1}}</div>
                         <div class="col-3">{{$profit->amount}}</div>

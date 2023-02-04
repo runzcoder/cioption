@@ -58,10 +58,10 @@
             <div class="pt-2 mt-4 col-lg-7 col-md-7 mt-sm-0 pt-sm-0">
                 <div class="section-title ml-lg-4">
                     <h4 class="mb-4 title">Who we are</h4>
-                    <p class="text-muted">Dynamo Vest
+                    <p class="text-muted">{{env("APP_NAME")}}
                         is a solution for creating an investment management platform.We are a forex trading company that specializes in providing professional and reliable services for trading in the foreign exchange market. Our company has a team of experienced professionals who are dedicated to help our clients make informed decisions and potentially maximize their returns while minimizing risk. We pride ourselves on our powerful trading platforms that are user-friendly, customizable, and equipped with real-time market data and analysis tools, offering fast execution, flexible trading options and available in different devices. We also offer high leverage options for forex trading, allowing you to potentially maximize your returns, but it is important to use it with caution and understand the risks. Moreover, we prioritize security in all aspects of forex trading by using top-notch security technologies, comply with regulations and regularly monitor the system to ensure the safety of your account and trades. We also have a 24/7 live chat support to help our clients with any questions or concerns they may have.</p>
-                    <a href="login.html" class="mt-3 btn btn-primary">Invest now<i
-                            class="mdi mdi-chevron-right"></i></a>
+                    <a href="/dashboard/create_investment/" class="mt-3 btn btn-primary">Invest now<i
+                            class="bi bi-chevron-right"></i></a>
                 </div>
             </div>
             <!--end col-->

@@ -13,7 +13,7 @@
                     <div class="col-1"></div>
                 </div>
 
-                @foreach ($trx as $tx)
+                @foreach ($trx->where("user_id", Auth::user()->id) as $tx)
                    @if($tx->type == "invest" || $tx->type == "withdrawal" || $tx->type == "transfer")
                    <div class="alert alert-light row">
                     <div class="col-2">{{$loop->index + 1}}</div>

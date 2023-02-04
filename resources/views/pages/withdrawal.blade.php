@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-                @foreach ($_withdrawals as $withdrawal)
+                @foreach ($_withdrawals->where("user_id", Auth::user()->id) as $withdrawal)
                     <div class="alert alert-light row">
                         <div class="col-3">{{ $loop->index + 1 }}</div>
                         <div class="col-3 text-danger">-{{ $withdrawal->amount }}</div>
