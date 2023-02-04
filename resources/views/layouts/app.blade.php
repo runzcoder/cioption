@@ -18,7 +18,6 @@
   
     @include("layouts.include.head")
 
-    <script src="//code.jivosite.com/widget/1GEO6kFpzo" async></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -109,10 +108,10 @@
                 <!-- Navigation Menu-->
                 <ul class="navigation-menu">
 
-                    <li><a href="about.html">About us</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="faq.html">Faq</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/about">About us</a></li>
+                    <li><a href="/#pricing">Pricing</a></li>
+                    <li><a href="/faq">Faq</a></li>
+                    <li><a href="/contact">Contact</a></li>
 
                 </ul>
 
@@ -160,13 +159,16 @@
                 <div class="pt-2 mt-4 col-lg-4 col-md-4 mt-sm-0 pt-sm-0">
                     <h5 class="text-light footer-head">Useful Links</h5>
                     <ul class="mt-4 list-unstyled footer-list">
-                        <li><a href="" class="text-foot"><i class="mr-1 mdi mdi-chevron-right"></i>
+                        <li><a href="/" class="text-foot">
+                           <i class="bi bi-chevron-right"></i>
                                 Home</a></li>
-                        <li><a href="about.html" class="text-foot"><i class="mr-1 mdi mdi-chevron-right"></i>
+                        <li><a href="/about" class="text-foot">
+                           <i class="bi bi-chevron-right"></i>
                                 About us</a></li>
-                        <li><a href="contact.html" class="text-foot"><i class="mr-1 mdi mdi-chevron-right"></i>
+                        <li><a href="/contact" class="text-foot">
+                            <i class="bi bi-chevron-right"></i>
                                 Contact Us</a></li>
-                        <li><a href="faq.html" class="text-foot"><i class="mr-1 mdi mdi-chevron-right"></i>
+                        <li><a href="/faq" class="text-foot"><i class="bi bi-chevron-right"></i>
                                 Faq</a></li>
                     </ul>
                 </div>
@@ -175,10 +177,10 @@
                 <div class="pt-2 mt-4 col-lg-4 col-md-4 mt-sm-0 pt-sm-0">
                     <h5 class="text-light footer-head">Contact Details</h5>
                     <div class="mt-2">
-                        <h6 class="text-foot"><i class="mr-1 mdi mdi-home"> </i>
+                        <h6 class="text-foot"><i class="bi bi-house"></i>
                             Head Office</h6>
                         <p>Watchmoor Park, Building Eight, Camberley GU15 3YL, United Kingdom</p>
-                        <h6><i class="mr-1 mdi mdi-email"> </i>Email Address</h6>
+                        <h6><i class="bi bi-envelope"></i> </i>Email Address</h6>
                         <p>{{env("MAIL_SUPPORT")}}</p>
                     </div>
                 </div>

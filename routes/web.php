@@ -56,13 +56,21 @@ Route::post('/dashboard/submit_deposit', [App\Http\Controllers\DashboardControll
 Route::get('/dashboard/deposit_confirm/{id}/{only_data?}', [App\Http\Controllers\DashboardController::class, 'depositConfirm'])->name('dashboard.deposit_confirm');
 Route::post('/dashboard/upload_proof', [App\Http\Controllers\DashboardController::class, 'uploadProof'])->name('dashboard.upload_proof');
 Route::get('/dashboard/cancel_deposit/{id}', [App\Http\Controllers\DashboardController::class, 'cancelDeposit'])->name('dashboard.cancel_deposit');
+
 Route::get('/dashboard/create_investment/{id?}', [App\Http\Controllers\DashboardController::class, 'createInvestment'])->name('dashboard.create_investment');
 Route::post('/dashboard/save_investment', [App\Http\Controllers\DashboardController::class, 'saveInvestment'])->name('dashboard.save_investment');
 Route::post('/dashboard/cancel_investment/', [App\Http\Controllers\DashboardController::class, 'cancelInvestment'])->name('dashboard.cancel_investment');
+
 Route::get('/dashboard/profits/', [App\Http\Controllers\DashboardController::class, 'profits'])->name('dashboard.profits');
+
 Route::get('/dashboard/trx/', [App\Http\Controllers\DashboardController::class, 'trx'])->name('dashboard.trx');
+
 Route::get('/dashboard/plans/', [App\Http\Controllers\DashboardController::class, 'plans'])->name('dashboard.plans');
+
 Route::get('/dashboard/referrals/', [App\Http\Controllers\DashboardController::class, 'referrals'])->name('dashboard.referrals');
+Route::get('/dashboard/referrals/claim/{id}/', [App\Http\Controllers\DashboardController::class, 'clemReward']);
+
+Route::get('/dashboard/withdraw/', [App\Http\Controllers\DashboardController::class, 'withdraw']);
 
 //// GENERAL ROUTES
 Route::get("/get_pay_options", [App\Http\Controllers\DashboardController::class, 'getPayOptions'])->name('dashboard.get_pay_options');
@@ -73,4 +81,8 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('pages.home');
 });
+Route::get("/faq", [App\Http\Controllers\PagesController::class, 'faq'])->name('faq');
+Route::get("/about", [App\Http\Controllers\PagesController::class, 'about'])->name('about');
+Route::get("/contact", [App\Http\Controllers\PagesController::class, 'contact'])->name('contact');
+
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');

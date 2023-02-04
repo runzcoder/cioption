@@ -4,6 +4,10 @@
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  
+  <script src="//code.jivosite.com/widget/EE3iCviBf8" async></script>
+
   <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

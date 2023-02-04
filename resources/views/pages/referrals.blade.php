@@ -15,8 +15,13 @@
                     <div class="alert alert-primary row">
                         <div class="col-3">{{$loop->index + 1}}</div>
                         <div class="col-3">{{$referral->user->name}}</div>
-                        <div class="col-3">$30</div>
-                        <div class="col-3"><button class="btn btn-primary">Claim Reward</button></div>
+                        <div class="col-3">${{$_getSetting::getSetting("referral_bonus")}}</div>
+                        @if ($referral->rewarded == "yes")
+                        <div class="col-3"><button class="btn btn-success">Rewarded</button>
+                        @else
+                        <div class="col-3"><a href="/dashboard/referrals/claim/{{$referral->id}}/"><button class="btn btn-primary">Claim Reward</button></a>
+                        @endif
+                        </div>
                     </div>
                 @endforeach
                 <div class="col-12">

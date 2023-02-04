@@ -10,7 +10,7 @@
 
     <title>{{ env('APP_NAME') }} | User Account Dashboard</title>
     <link rel="icon"
-        href="https://dynamoinvestoptions.com/storage/app/public/photos/4uqMp6F8srvXHwjUAUEp47JoMiQadStJa6bBCQBR.png"
+        href="{{ asset('_eji/images/ZSB7XIxutSXh8sFDA20EQDMWBdVY7wW9tl33mFFr.jpg') }}"
         type="image/png" />
     <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -102,7 +102,7 @@
                             width="30%" alt=""></span>
                     <span class="pt-2 btn-inner--icon d-block">Deposit</span>
                 </a>
-                <a href="#" class="text-sm btn btn-square  ">
+                <a href="/dashboard/withdraw" class="text-sm btn btn-square  ">
                     <span class="btn-inner--icon d-block"><img
                             src="https://th.bing.com/th?id=OIP.ulJoL56Bq2qzxj75nHz88AHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
                             width="30%" alt=""></span>
@@ -359,7 +359,6 @@
             }, 'google_translate_element');
         }
     </script>
-    <script src="//code.jivosite.com/widget/1GEO6kFpzo" async></script>
 
     <script></script>
 

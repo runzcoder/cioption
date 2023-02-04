@@ -8,6 +8,7 @@ use App\Models\Investment;
 use App\Models\InvestmentType;
 use App\Models\PayOption;
 use App\Models\Referral;
+use App\Models\Setting;
 use App\Models\TransactionHistory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -178,5 +179,29 @@ class DashboardController extends Controller
     {
         $referrals = Referral::orderBy("id", "desc")->where("referred_by", Auth::user()->username)->paginate(10);
         return view("pages.referrals")->with("referrals", $referrals);
+    }
+
+    public function clemReward($id)
+    {
+        
+        $referral = Referral::find($id);
+        if ($referral 
+            && $referral->referred_by == Auth::user()->username 
+            && $referral->rewarded == "no")
+            {
+                $referral->rewarded = "yes";
+                $referral->save();
+
+                BalanceController::updateBalance(Auth::user()->id, "reward", SettingsController::getSetting("referral_bonus"),"","Referral bonus");
+                return redirect("dashboard/referrals")->with("success", "You have been rewarded with $".SettingsController::getSetting("referral_bonus")." Referral bonus");
+
+            }
+        return redirect("dashboard/referrals")->with("failed", "Not found");
+    }
+
+
+    public function withdraw()
+    {
+        return view("pages.withdraw");
     }
 }
