@@ -70,8 +70,8 @@
                     <div class="mt-3 content">
                         <h5 class="font-weight-bold">Email</h5>
 
-                        <a href="mailto:support@dynamoinvestoptions.com"
-                            class="text-primary">support@dynamoinvestoptions.com</a>
+                        <a href="mailto:{{env("SUPPORT_MAIL")}}"
+                            class="text-primary">{{env("SUPPORT_MAIL")}}</a>
                     </div>
                 </div>
             </div>
