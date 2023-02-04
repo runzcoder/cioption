@@ -70,8 +70,8 @@
                     <div class="mt-3 content">
                         <h5 class="font-weight-bold">Email</h5>
 
-                        <a href="mailto:{{env("SUPPORT_MAIL")}}"
-                            class="text-primary">{{env("SUPPORT_MAIL")}}</a>
+                        <a href="mailto:{{env("MAIL_SUPPORT")}}"
+                            class="text-primary">{{env("MAIL_SUPPORT")}}</a>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                         <h4 class="card-title">Get in Touch !</h4>
                         <div class="mt-4 custom-form">
                             <div id="message"></div>
-                            <form method="post" action="https://dynamoinvestoptions.com/sendcontact">
+                            <form method="post" action="#">
                                 <input type="hidden" name="_token" value="xrKKv7ySQdREfCPO02M9DPCxLoFfldu7Vkti4gVB">                                    <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
