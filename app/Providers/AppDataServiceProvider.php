@@ -10,6 +10,7 @@ use App\Models\InvestmentType;
 use App\Models\Setting;
 use App\Models\TransactionHistory;
 use App\Models\User;
+use App\Models\Withdrawal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -44,6 +45,7 @@ class AppDataServiceProvider extends ServiceProvider
                 $users = User::orderBy("id", "desc")->paginate(10);
                 $settings = Setting::orderBy("id", "desc")->paginate(10);
                 $currencies = Currency::where("active", "yes")->get();
+                $withdrawals = Withdrawal::orderBy("id", "desc")->paginate(10);
                 $view->with('_loggedUser', $user)
                     ->with('_deposits',$deposits)
                     ->with('_trx',$trx)
@@ -52,7 +54,8 @@ class AppDataServiceProvider extends ServiceProvider
                     ->with('_users', $users)
                     ->with('_settings', $settings)
                     ->with("_getSetting", SettingsController::class)
-                    ->with("_currencies", $currencies);
+                    ->with("_currencies", $currencies)
+                    ->with("_withdrawals", $withdrawals);
             }
         });
 

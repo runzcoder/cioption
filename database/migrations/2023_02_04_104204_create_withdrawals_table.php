@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string("currency_id");
             $table->string("accno_address");
             $table->string("bank_network");
-            $table->string("account_name");
+            $table->string("account_name")->nullable();
             $table->enum("status", ["pending", "processing", "approved", "cancelled"])->default("pending");
             $table->timestamps();
         });

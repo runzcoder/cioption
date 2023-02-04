@@ -9,4 +9,9 @@ class TransactionHistory extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function getTypeAttribute($key)
+    {
+    return $key;
+}
 }

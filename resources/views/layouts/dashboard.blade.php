@@ -102,7 +102,7 @@
                             width="30%" alt=""></span>
                     <span class="pt-2 btn-inner--icon d-block">Deposit</span>
                 </a>
-                <a href="/dashboard/withdraw" class="text-sm btn btn-square  ">
+                <a href="/dashboard/withdrawal" class="text-sm btn btn-square  ">
                     <span class="btn-inner--icon d-block"><img
                             src="https://th.bing.com/th?id=OIP.ulJoL56Bq2qzxj75nHz88AHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
                             width="30%" alt=""></span>

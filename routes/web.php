@@ -70,7 +70,9 @@ Route::get('/dashboard/plans/', [App\Http\Controllers\DashboardController::class
 Route::get('/dashboard/referrals/', [App\Http\Controllers\DashboardController::class, 'referrals'])->name('dashboard.referrals');
 Route::get('/dashboard/referrals/claim/{id}/', [App\Http\Controllers\DashboardController::class, 'clemReward']);
 
-Route::get('/dashboard/withdraw/', [App\Http\Controllers\DashboardController::class, 'withdraw']);
+Route::get('/dashboard/withdrawal/', [App\Http\Controllers\DashboardController::class, 'withdrawal']);
+Route::post('/dashboard/save_withdrawal/', [App\Http\Controllers\DashboardController::class, 'saveWithdrawal']);
+Route::get('/dashboard/cancel_withdrawal/{id}', [App\Http\Controllers\DashboardController::class, 'cancelWithdrawal'])->name('dashboard.cancel_withdrawal');
 
 //// GENERAL ROUTES
 Route::get("/get_pay_options", [App\Http\Controllers\DashboardController::class, 'getPayOptions'])->name('dashboard.get_pay_options');

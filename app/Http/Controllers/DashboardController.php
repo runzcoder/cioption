@@ -10,6 +10,7 @@ use App\Models\PayOption;
 use App\Models\Referral;
 use App\Models\Setting;
 use App\Models\TransactionHistory;
+use App\Models\Withdrawal;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -200,8 +201,56 @@ class DashboardController extends Controller
     }
 
 
-    public function withdraw()
+    public function withdrawal()
     {
-        return view("pages.withdraw");
+        return view("pages.withdrawal");
+    }
+
+    public function saveWithdrawal(Request $request)
+    {
+        $request->validate([
+            "amount" => "required",
+            "currency_id" => "required",
+            "accno_address" => "required",
+            "bank_network" => "required",
+            "rate" => "required"
+        ]);
+
+        if (Auth::user()->balance < $request->amount)
+        {
+                return redirect()->back()->with("failed", "Insufficient balance");
+        }
+
+        DB::transaction(function()use($request){
+            $withdrawal = Withdrawal::create([
+                "user_id" => Auth::user()->id,
+                "rate" => $request->rate,
+                "amount" => $request->amount,
+                "currency_id" => $request->currency_id,
+                "accno_address" => $request->accno_address,
+                "bank_network" => $request->bank_network,
+                "account_name" => $request->account_name || ""
+            ]);
+
+            BalanceController::updateBalance(Auth::user()->id, "withdrawal", $request->amount, "", "Withdrawal");
+
+        });
+
+        return redirect()->back()->with("success", "Withdrawal request successfull");
+
+        
+    }
+
+    public function cancelWithdrawal($id)
+    {
+        $withdrawal = Withdrawal::find($id);
+        if ($withdrawal && $withdrawal->status == "pending" && $withdrawal->user_id == Auth::user()->id) {
+            $withdrawal->status = "cancelled";
+            BalanceController::updateBalance(Auth::user()->id, "funding", $withdrawal->amount, "", "Cancelled withdrawal");
+            $withdrawal->save();
+            return redirect()->back()->with("success", "Deposit Cancelled");
+        }
+
+        return redirect()->back()->with("failed", "Record not found");
     }
 }
