@@ -14,6 +14,7 @@ class DepositConfirm extends React.Component {
             dollar_rate: 1,
             currency_id: "",
             currency_symbol: "",
+            currency_network: "",
             payment_proof: "",
             status: "pending",
             pay_options_id: "",
@@ -90,7 +91,6 @@ class DepositConfirm extends React.Component {
             .then(res => res.json())
             .
             then(async data => {
-                console.log(data[0])
                 this.setState({
                     amount: data[0].amount,
                     pay_options_id: data[0].pay_options_id,
@@ -100,16 +100,13 @@ class DepositConfirm extends React.Component {
                     status: data[0].status,
                     walletAddress: data[1].wallet_address,
                     currency_symbol: data[2].symbol.toUpperCase(),
+                    currency_network: data[2].network,
                     deposit: data[0]
                 })
             })
             .then(() => {
             })
             .catch(e => { });
-    }
-
-    componentDidUpdate() {
-        console.log(this.state.pay_options)
     }
 
 
@@ -149,7 +146,7 @@ class DepositConfirm extends React.Component {
                                     <input className="w-100" type="text" value={this.state.walletAddress} disabled />
                                     <div className="col-md-2"><button type="button" onClick={this.copyAddress} className="btn btn-light"><i class="bi bi-file-earmark"></i></button></div>
                                 </div>
-                                <small>Network Type: ERC-20</small>
+                                <small>Network Type: {this.state.currency_network}</small>
                             </div>
                             <br /><br />
 

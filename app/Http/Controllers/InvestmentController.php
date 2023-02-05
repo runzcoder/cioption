@@ -23,6 +23,7 @@ class InvestmentController extends Controller
                     BalanceController::updateBalance($invest->user_id, "profit", $interest, "", "Profit");
                 });
             }
+            return 1;
         } else {
             return 0;
         }

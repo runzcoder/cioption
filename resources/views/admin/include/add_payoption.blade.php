@@ -24,31 +24,40 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <label for="name"><b>Type</b></label>:
+                            <label for="name"><b>Currency Type</b></label>:
                         </div>
                         <div class="col-12">
-                            <select name="type" id="" class="w-100">
-                                <option value="">Choose Type</option>
-                                <option value="fiat">Fiat</option>
+                            <select onchange="
+                            if (this.value == 'crypto'){
+                                document.getElementById('fiat_data').style.display = 'none'
+                                document.getElementById('crypto_data').style.display = 'block'
+                            }
+                            else {
+                                document.getElementById('fiat_data').style.display = 'block'
+                                document.getElementById('crypto_data').style.display = 'none'
+                            }
+                                " 
+                                name="type" id="" class="w-100">
                                 <option value="crypto">Crypto</option>
+                                <option value="fiat">Fiat</option>
                             </select>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row" style="display:none" id="fiat_data">
                         <div class="col-12">
                             <label for="symbol"><b>Bank_name</b></label>:
                         </div>
                         <div class="col-12">
                             <input type="text" name="bank_name" class="w-100" placeholder="bank_name for fiat only">
                         </div>
-                    </div>
-                    <div class="row">
+                    
                         <div class="col-12">
                             <label for="image"><b>account_number</b></label>: <br>
                             <input type="text" name="account_number" class="w-100" placeholder="account_number for fiat only">
                         </div>
                     </div>
-                    <div class="row">
+
+                    <div class="row" style="display:none" id="crypto_data">
                         <div class="col-12">
                             <label for="network"><b>Crypto Type</b></label>:
                             <input type="text" name="network" class="w-100" placeholder="Crypto only e.g. ERC-20, BEP-20 etc">

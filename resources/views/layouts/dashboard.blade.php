@@ -90,6 +90,15 @@
             </div>
             <!-- Application nav -->
             <div class="clearfix nav-application">
+                @if(Auth::user()->level == "admin" || Auth::user()->level == "superadmin")
+                <a href="{{ route('admin') }}" class="text-sm btn btn-square">
+                    <span class="btn-inner--icon d-block"><img
+                            src="{{asset("images/admin.png")}}"
+                            width="30%" alt="" srcset=""></span>
+                    <span class="pt-2 btn-inner--icon d-block">Admin Dashboard</span>
+                </a>
+                @endif
+                
                 <a href="{{ route('dashboard') }}" class="text-sm btn btn-square">
                     <span class="btn-inner--icon d-block"><img
                             src="https://th.bing.com/th?id=OIP.aFUA62GXzSVCvoHZp8-wxwHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
@@ -172,7 +181,7 @@
                     <p class="mb-4 text-white">
                         Contact our 24/7 customer support center
                     </p>
-                    <a href="#" class="btn btn-sm btn-block bg-gradient-warning btn-white rounded-pill">Contact
+                    <a href="/contact" class="btn btn-sm btn-block bg-gradient-warning btn-white rounded-pill">Contact
                         Us</a>
                 </div>
             </div>

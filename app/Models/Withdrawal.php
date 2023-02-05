@@ -9,4 +9,14 @@ class Withdrawal extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function currency()
+    {
+        return $this->hasOne(Currency::class,"id", "currency_id");
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,"id", "user_id");
+    }
 }

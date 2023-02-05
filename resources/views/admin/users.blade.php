@@ -10,15 +10,22 @@
                 <i class="bi bi-currency-dollar"></i>Add Pay Option</button> --}}
             </div><br><br>
             <div class="col-12" style="overflow-x:auto;">
+                <form action="{{route("admin.search_users")}}" method="post">
+                    @csrf
+                    <div class="row bg-primary alert alert-primary">
+                        <div class="col-8 ">
+                            <input type="text" class="w-100 p-2" name="search_text" placeholder="Enter name, username or email">
+                        </div>
+                      <div class="col-4">  <input class="w-100 btn btn-primary" type="submit" value="Search"></div>
+                    </div>
+                </form>
                 <table class="table-bordered w-100 text-light" style="overflow: scroll">
                     <thead>
                         <th>#</th>
                         <th>{{ ucfirst('Full name') }}</th>
                         <th>{{ ucfirst('username') }}</th>
                         <th>{{ ucfirst('email') }}</th>
-                        {{-- <th>{{ucfirst("network")}}</th>
-                    <th>{{ucfirst("type")}}</th>
-                    <th>{{ucfirst("wallet_address")}}</th> --}}
+                        <th>{{ucfirst("level")}}</th>
                         <th>{{ ucfirst('Actions') }}</th>
                     </thead>
                     <tbody>
@@ -38,25 +45,22 @@
                                     </td>
                                     <td>{{ $user->username }}</td>
                                     <td>{{ $user->email }}</td>
-                                    {{-- <td>{{$user->network}}</td>
-                    <td>{{$user->type}}</td>
-                    <td>{{$user->wallet_address}}</td> --}}
+                                    <td>{{$user->level}}</td>
                                     <td>
                                         <div
                                             style="display: flex; flex-direction:row; justify-content: space-evenly; align-content: center;">
 
                                             <button data-bs-toggle="modal"
-                                                data-bs-target="#delete_payoption{{ $loop->index }}"><i
-                                                    class="text-danger bi  bi-archive-fill"></i>
+                                                data-bs-target="#change_role{{ $loop->index }}"><i
+                                                    class="text-danger bi  bi-pencil-fill"></i>
                                             </button>
-                                            {{-- <i class="text-success bi  bi-pencil"></i><br>
-                        <i class=" text-primary bi  bi-check-circle-fill"></i>
-                        <i class="text-info bi  bi-x"></i> --}}
-
-                                            {{-- @include('admin.include.delete_payoption') --}}
+                                           
                                         </div>
                                     </td>
                                 </tr>
+                                <tr><td colspan="5">
+                                @include("admin.include.change_role")    
+                                </td></tr>
                             @endforeach
                         @endif
                     </tbody>

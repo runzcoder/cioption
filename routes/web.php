@@ -35,12 +35,19 @@ Route::post('/admin/add_investment_type', [App\Http\Controllers\AdminController:
 Route::post('/admin/delete_investment_type/{id}', [App\Http\Controllers\AdminController::class, 'disableInvestmentType'])->name('admin.delete_investment_type');
 
 Route::get('/admin/users', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
+Route::post('/admin/search_users', [App\Http\Controllers\AdminController::class, 'searchUsers'])->name('admin.search_users');
+Route::post('/admin/change_role', [App\Http\Controllers\AdminController::class, 'changeRole'])->name('admin.change_role');
 
 
 Route::get('/admin/deposits', [App\Http\Controllers\AdminController::class, 'deposits'])->name('admin.deposits');
 Route::get('/admin/view_deposit/{id}', [App\Http\Controllers\AdminController::class, 'viewDeposits'])->name('admin.view_deposit');
 Route::get('/admin/approve_deposit/{id}', [App\Http\Controllers\AdminController::class, 'approveDeposit'])->name('admin.approve_deposit');
 Route::get('/admin/decline_deposit/{id}', [App\Http\Controllers\AdminController::class, 'declineDeposit'])->name('admin.decline_deposit');
+
+Route::get('/admin/withdrawals', [App\Http\Controllers\AdminController::class, 'withdrawals'])->name('admin.withdrawals');
+Route::get('/admin/view_withdrawal/{id}', [App\Http\Controllers\AdminController::class, 'viewwithdrawals'])->name('admin.view_withdrawal');
+Route::get('/admin/approve_withdrawal/{id}', [App\Http\Controllers\AdminController::class, 'approvewithdrawal'])->name('admin.approve_withdrawal');
+Route::get('/admin/decline_withdrawal/{id}', [App\Http\Controllers\AdminController::class, 'declinewithdrawal'])->name('admin.decline_withdrawal');
 
 
 Route::get('/admin/settings', [App\Http\Controllers\AdminController::class, 'settings'])->name('admin.settings');

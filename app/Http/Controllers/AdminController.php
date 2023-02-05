@@ -8,6 +8,7 @@ use App\Models\InvestmentType;
 use App\Models\PayOption;
 use App\Models\Setting;
 use App\Models\User;
+use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -160,6 +161,39 @@ class AdminController extends Controller
         return view("admin.users")->with("users", $users);
     }
 
+    public function searchUsers(Request $request)
+    {
+          $request->validate([
+            "search_text" => "required"
+          ]);
+
+            $users = User::where('name','like','%'.$request->search_text.'%')
+            ->orWhere('email','like','%'.$request->search_text.'%')
+            ->orWhere('username','like','%'.$request->search_text.'%')
+            ->paginate(10);
+            return view("admin.users")->with("users", $users);
+
+    }
+
+    public function changeRole(Request $request)
+    {
+        $request->validate(
+            [
+                "user_id" => "required",
+                "level" => "required"
+            ]
+            );
+
+        $user = User::find($request->user_id);
+        if ($user)
+        {
+            $user->level = $request->level;
+            $user->save();
+            return redirect()->back()->with("success", "User level updated");
+        }
+        return redirect()->back()->with("failed", "User not found updated");
+        
+    }
 
     //// DEPOSITS
 
@@ -200,16 +234,65 @@ class AdminController extends Controller
     public function declineDeposit($id)
     {
         $deposit = Deposit::find($id);
-        if($deposit && $deposit->status == "pending")
-        {
+        if ($deposit && $deposit->status == "pending") {
             $deposit->status = "declined";
             $deposit->save();
             return redirect()->back()->with("success", "Deposit Declined");
         }
-        
+
         return redirect()->back()->with("failed", "Record not found");
     }
 
+    
+     //// Withdrawals
+
+     public function withdrawals()
+     {
+         $withdrawals = Withdrawal::orderBy("id", "desc")->where('status', 'not like', '%cancelled%')->paginate(10);
+         return view("admin.withdrawals")->with("withdrawals", $withdrawals);
+     }
+ 
+     public function viewWithdrawals($id)
+     {
+         $withdrawal = Withdrawal::find($id);
+         $user = User::find($withdrawal->user_id);
+         return view("admin.view_withdrawal")->with("withdrawal", $withdrawal)->with("user", $user);
+     }
+ 
+     public static function approveWithdrawal($id)
+     {
+         $withdrawal = Withdrawal::where("id", $id)->where("status", "pending")->get();
+ 
+         if (count($withdrawal) > 0) {
+             $withdrawal = $withdrawal[0];
+             $user = User::find($withdrawal->user_id);
+             if ($user) {
+                 if (BalanceController::updateBalance($user->id, "withdrawal", $withdrawal->amount, $withdrawal->currency->name, "Withdrawal")) {
+                     $_width = Withdrawal::find($withdrawal->id);
+                     $_width->status = "approved";
+                     $_width->approved_by = Auth::user()->id;
+                     $_width->save();
+                     return redirect()->back()->with("success", "Withdrawal approved. Ensure you send the coin to the user immediately");
+                 }
+             }
+         }
+ 
+         return redirect()->back()->with("failed", "Withdrawal record not found");
+     }
+ 
+     public function declineWithdrawal($id)
+     {
+        //  $deposit = Deposit::find($id);
+        //  if ($deposit && $deposit->status == "pending") {
+        //      $deposit->status = "declined";
+        //      $deposit->save();
+        //      return redirect()->back()->with("success", "Deposit Declined");
+        //  }
+ 
+        //  return redirect()->back()->with("failed", "Record not found");
+     }
+ 
+     
 
     //Settings
 
@@ -225,7 +308,7 @@ class AdminController extends Controller
             "value" => "required"
         ]);
 
-       Setting::create($request->all());
+        Setting::create($request->all());
         return redirect()->back()->with("success", "Settings added");
     }
 
@@ -237,12 +320,11 @@ class AdminController extends Controller
             "value" => "required"
         ]);
         $setting = Setting::find($request->id);
-        if ($setting)
-        {
-            $setting->name = $request->name; 
+        if ($setting) {
+            $setting->name = $request->name;
             $setting->value = $request->value;
             $setting->save();
-        return redirect()->back()->with("success", "Settings added");
+            return redirect()->back()->with("success", "Settings added");
         }
         return redirect()->back()->with("failed", "Settings  not found");
     }

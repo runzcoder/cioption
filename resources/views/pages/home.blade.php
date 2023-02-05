@@ -56,9 +56,9 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            <h6 class="mb-1 text-muted">Bonus</h6>
+                                            <h6 class="mb-1 text-muted">Total Active Investments</h6>
                                             <span
-                                                class="mb-0 h5 font-weight-bold">${{ $_loggedUser->trx->where('type', 'bonus')->sum('amount') }}</span>
+                                                class="mb-0 h5 font-weight-bold">${{ $_loggedUser->investments->where('status', 'running')->sum('amount') }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
@@ -119,7 +119,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <h6 class="mb-1 text-muted">Total Withdrawal</h6>
-                                            <span class="mb-0 h5 font-weight-bold ">$0.00</span>
+                                            <span class="mb-0 h5 font-weight-bold ">${{ $_loggedUser->withdrawals->where('status', 'approved')->sum('amount') }}</span>
                                         </div>
                                         <div class="col-auto">
                                             <div class="text-white icon bg-gradient-primary rounded-circle icon-shape">
@@ -254,7 +254,11 @@
                                                             <td>{{ $loop->index + 1 }}</td>
                                                             <td class="alert">{{ $tx->created_at }}</td>
                                                             <td class="alert">{{ ucfirst($tx->type) }}</td>
-                                                            <td class="alert">${{ $tx->amount }}</td>
+                                                            @if($tx->type == "invest" || $tx->type == "withdrawal" || $tx->type == "transfer")
+                                                            <td class="alert text-danger">-${{ $tx->amount }}</td>
+                                                            @else
+                                                            <td class="alert text-success">${{ $tx->amount }}</td>
+                                                            @endif
                                                         </tr>
                                                     @endforeach
                                                 @endif

@@ -214,6 +214,12 @@
                                         <span class="">Deposits</span>
                                     </button>
                                 </a>
+                                <a href="{{ route('admin.withdrawals') }}" class="text-sm btn  ">
+                                    <button class="btn btn-primary">
+                                        <i class="bi bi-coin"></i>
+                                        <span class="">Withdrawals</span>
+                                    </button>
+                                </a>
                                 <a href="{{ route('admin.settings') }}" class="text-sm btn  ">
                                     <button class="btn btn-primary">
                                         <i class="bi bi-gear"></i>

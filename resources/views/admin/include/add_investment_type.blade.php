@@ -48,7 +48,7 @@
                         </div>
 
                         <div class="col-3">
-                            <label for="max"><b>Minimum</b></label>:
+                            <label for="max"><b>Maximum</b></label>:
                         </div>
                         <div class="col-9">
                             <input type="number" name="max" class="w-100" placeholder="Enter maximum amount">

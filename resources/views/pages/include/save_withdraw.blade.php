@@ -21,7 +21,7 @@
                       then(e => { document.getElementById('rate{{$loop->index}}').value = `${e}`; document.getElementById('rate2{{$loop->index}}').innerHTML = `${e}`;}).catch(e=>alert(e.message))" 
                       required class="w-100 p-2 mb-3" id="amount" min="100" max="{{$_loggedUser->balance}}" type="number" name="amount" id="amount"  placeholder="0.00" required>
                      
-                     <input required class="w-100 mb-3" id="rate{{$loop->index}}" type="text" name="rate" value="">  <br> 
+                     <input required class="w-100 mb-3" id="rate{{$loop->index}}" type="hidden" name="rate" value="">  <br> 
                       
                       <input required class="w-100 mb-3" type="hidden" name="currency_id" value="{{$currency->id}}">  
                       @if ($currency->type == "fiat")
@@ -31,11 +31,12 @@
                       @endif
                       <input required class="w-100 mb-3" type="text" name="accno_address" value="">  
                       @if ($currency->type == "fiat")
-                     Bank
+                       Bank
+                       <input required class="w-100 mb-3" type="text" name="bank_network" value="{{$currency->network}}">  
                       @else
                       Network Type:  ERC-20, BEP20 etc
+                      <input disabled required class="w-100 mb-3" type="text" name="bank_network" value="{{$currency->network}}">  
                       @endif
-                      <input required class="w-100 mb-3" type="text" name="bank_network" value="">  
                       
                       @if ($currency->type == "fiat")
                       Enter Account Name
