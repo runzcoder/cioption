@@ -120,6 +120,10 @@ class DashboardController extends Controller
             "amount" => "required"
         ]);
 
+        if (Auth::user()->balance < $request->amount)
+        {
+            return redirect()->back()->with("failed", "Insufficient amount");
+        }
         $investment_type = InvestmentType::find($request->investment_type_id);
 
         if ($investment_type) {

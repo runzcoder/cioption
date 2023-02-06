@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TransactionHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class BalanceController extends Controller
 {
@@ -30,6 +31,7 @@ class BalanceController extends Controller
         {
             if($amount > $user->balance)
             {
+                Session::flash("failed", "Insufficient balance");
                 throw throw new \ErrorException("Insufficient amount");
             }
             $balance -= $amount;

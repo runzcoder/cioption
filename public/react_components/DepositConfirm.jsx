@@ -145,8 +145,9 @@ class DepositConfirm extends React.Component {
                                 <div style={{ display: "flex", flexDirection: "row" }}>
                                     <input className="w-100" type="text" value={this.state.walletAddress} disabled />
                                     <div className="col-md-2"><button type="button" onClick={this.copyAddress} className="btn btn-light"><i class="bi bi-file-earmark"></i></button></div>
-                                </div>
-                                <small>Network Type: {this.state.currency_network}</small>
+                                </div> <br />
+                                <img width="150px" src={`https://qrcode.tec-it.com/API/QRCode?data=${this.state.walletAddress}&backcolor=%23ffffff`} />
+                               <br /> <small>Network Type: {this.state.currency_network}</small>
                             </div>
                             <br /><br />
 

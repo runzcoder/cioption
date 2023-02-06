@@ -40,6 +40,12 @@
                                 <div class="row alert-primary alert">
                                     <div class="col-4">Wallet Address</div>
                                     <div class="col-6">{{ $withdrawal->accno_address }}</div>
+                                    <div class="col-4"></div>
+                                    <div class="col-6 ">
+                                        <br />
+                                <img width="150px" src="https://qrcode.tec-it.com/API/QRCode?data={{$withdrawal->accno_address}}&backcolor=%23ffffff" />
+                               <br />
+                                    </div>
                                 </div>
 
                                 <div class="row alert-primary alert">
