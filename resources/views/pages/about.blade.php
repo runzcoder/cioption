@@ -157,7 +157,7 @@
 
                 <div class="mt-4 col-md-4 mt-sm-0">
                     <div class="text-center text-md-right">
-                        <a href="register.html" class="pt-3 pb-3 pl-4 pr-4 btn btn-light">Create Free
+                        <a href="/register" class="pt-3 pb-3 pl-4 pr-4 btn btn-light">Create Free
                             Account</a>
                     </div>
                 </div>

@@ -9,9 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ env('APP_NAME') }} | User Account Dashboard</title>
-    <link rel="icon"
-        href="{{ asset('_eji/images/ZSB7XIxutSXh8sFDA20EQDMWBdVY7wW9tl33mFFr.jpg') }}"
-        type="image/png" />
+    <link rel="icon" href="{{ asset('_eji/images/ZSB7XIxutSXh8sFDA20EQDMWBdVY7wW9tl33mFFr.jpg') }}" type="image/png" />
     <!-- Font Awesome 5 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('_eji/css/all.min.css') }}">
@@ -26,8 +24,8 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/v/bs4/dt-1.10.21/af-2.3.5/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/r-2.2.5/datatables.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" href="{{asset("_eji/css/dash.css") }} " id="stylesheet">
-    <link rel="stylesheet" href="{{asset("_eji/css/style.css") }}" >
+    <link rel="stylesheet" href="{{ asset('_eji/css/dash.css') }} " id="stylesheet">
+    <link rel="stylesheet" href="{{ asset('_eji/css/style.css') }}">
 
     @include('layouts.include.head')
 
@@ -90,15 +88,14 @@
             </div>
             <!-- Application nav -->
             <div class="clearfix nav-application">
-                @if(Auth::user()->level == "admin" || Auth::user()->level == "superadmin")
-                <a href="{{ route('admin') }}" class="text-sm btn btn-square">
-                    <span class="btn-inner--icon d-block"><img
-                            src="{{asset("images/admin.png")}}"
-                            width="30%" alt="" srcset=""></span>
-                    <span class="pt-2 btn-inner--icon d-block">Admin Dashboard</span>
-                </a>
+                @if (Auth::user()->level == 'admin' || Auth::user()->level == 'superadmin')
+                    <a href="{{ route('admin') }}" class="text-sm btn btn-square">
+                        <span class="btn-inner--icon d-block"><img src="{{ asset('images/admin.png') }}" width="30%"
+                                alt="" srcset=""></span>
+                        <span class="pt-2 btn-inner--icon d-block">Admin Dashboard</span>
+                    </a>
                 @endif
-                
+
                 <a href="{{ route('dashboard') }}" class="text-sm btn btn-square">
                     <span class="btn-inner--icon d-block"><img
                             src="https://th.bing.com/th?id=OIP.aFUA62GXzSVCvoHZp8-wxwHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
@@ -306,13 +303,16 @@
                 <div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
-                        <div class="alert alert-modern alert-primary">
+                    <div class="col-6 col-md-4">
+                        <div class="alert alert-primary">
 
                             <span class="badge badge-primary badge-pill">
                                 New
                             </span>
-                            <span class="alert-content">Welcome to Online</span>
+                            <span class="alert-content">
+                                Welcome to Online
+                                <i class="bi bi-chevron-right"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -320,18 +320,6 @@
                 @yield('content')
 
             </div>
-            <!-- Footer -->
-            {{-- <div class="pt-5 pb-4 footer footer-light sticky-bottom" id="footer-main">
-    <div class="text-center row text-sm-left align-items-sm-center">
-        <div class="col-sm-6">
-            <p class="mb-0 text-sm">All Rights Reserved &copy; {{env("APP_NAME")}}
-                {{date("Y")}}</p>
-        </div>
-                            <div class="text-right col-sm-6 text-md-center">
-            <div id="google_translate_element"></div>
-        </div>
-                        </div>
-</div> --}}
         </div>
     </div>
     <script type="text/javascript" src="https//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
@@ -355,9 +343,6 @@
     <script type="text/javascript"
         src="https://cdn.datatables.net/v/bs4/dt-1.10.21/af-2.3.5/b-1.6.3/b-flash-1.6.3/b-html5-1.6.3/b-print-1.6.3/r-2.2.5/datatables.min.js">
     </script>
-
-
-
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
     </script>
 
