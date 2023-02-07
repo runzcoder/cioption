@@ -229,7 +229,10 @@
                                     <a class="dropdown-item text-danger" href="#">
                                         <img src="https://th.bing.com/th?id=OIP.aUm0uqiQz8c0nhT_VEKqYwHaHq&w=245&h=254&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
                                             width="30%" alt="">
-                                        <span>Logout</span>
+                                      <form action="{{route("logout")}}" method="post">
+                                        @csrf
+                                        <span><input type="submit" value="Logout"></span>
+                                    </form>
                                     </a>
                                 </div>
                             </li>
