@@ -50,7 +50,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $referred_by = isset($_GET['referred_by']) ? $_GET["referred_by"]:"";
+        $referred_by = isset($_GET['referred_by']) ? $_GET["referred_by"]:"null_admin";
         return view('auth.register')->with("referred_by", $referred_by)->with("countries", CountriesController::countries());
     }
 
@@ -62,7 +62,6 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255', "unique:users"],
             'phone_number' => ['required', 'string', 'max:255'],
             'country' => ['required', 'string', 'max:255'],
-            'referred_by' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
