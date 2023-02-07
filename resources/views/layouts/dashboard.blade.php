@@ -275,14 +275,15 @@
                                     </a>
                                     <div class="dropdown-divider"></div>
 
-                                    <a class="dropdown-item text-danger">
+                                    <a class="dropdown-item text-danger" onclick="document.getElementById('logoutbtn').click()">
                                         <img src="https://th.bing.com/th?id=OIP.aUm0uqiQz8c0nhT_VEKqYwHaHq&w=245&h=254&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
                                             width="30%" alt="">
-                                        <span>  <form id="logout-form" action="logout" method="POST" >
-                                            <input type="submit" name="" value="Logout">
-                                        </form></span>
+                                        <span>Logout</span>
                                     </a>
-                                  
+                                    <form id="logout-form" action="{{route("logout")}}" method="POST" style="display:none">
+                                        @csrf
+                                        <input id="logoutbtn" type="submit" name="" value="Logout">
+                                    </form>
                                 </div>
                             </li>
                         </ul>
