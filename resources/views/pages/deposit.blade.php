@@ -30,7 +30,7 @@
                         @else
                             @foreach ($deposits as $deposit)
                                 <div class="row alert alert-info">
-                                    <div class="col-2"> <img width="30px" src={{ $deposit->payOption()->currency()->image }}
+                                    <div class="col-2"> <img width="30px" src={{ $deposit->payOption->currency->image }}
                                             alt=""> {{ strtoupper($deposit->payOption->currency->symbol) }}</div>
                                     <div class="col-4"> {{ strtoupper($deposit->payOption->currency->symbol) }}
                                         ${{ $deposit->amount }}</div>
