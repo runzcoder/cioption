@@ -37,7 +37,7 @@ Route::post('/admin/delete_investment_type/{id}', [App\Http\Controllers\AdminCon
 Route::get('/admin/users', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.users');
 Route::post('/admin/search_users', [App\Http\Controllers\AdminController::class, 'searchUsers'])->name('admin.search_users');
 Route::post('/admin/change_role', [App\Http\Controllers\AdminController::class, 'changeRole'])->name('admin.change_role');
-
+Route::post('/admin/add_balance', [App\Http\Controllers\AdminController::class, 'addBalance'])->name('admin.add_balance');
 
 Route::get('/admin/deposits', [App\Http\Controllers\AdminController::class, 'deposits'])->name('admin.deposits');
 Route::get('/admin/view_deposit/{id}', [App\Http\Controllers\AdminController::class, 'viewDeposits'])->name('admin.view_deposit');

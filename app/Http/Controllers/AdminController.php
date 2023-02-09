@@ -195,6 +195,25 @@ class AdminController extends Controller
         
     }
 
+    public function addBalance(Request $request)
+    {
+        $request->validate(
+            [
+                "user_id" => "required",
+                "amount" => "required"
+            ]
+            );
+
+        $user = User::find($request->user_id);
+        if ($user)
+        {
+            BalanceController::updateBalance($user->id, "reward", $request->amount, "", "Bonus");
+            return redirect()->back()->with("success", "User balance updated");
+        }
+        return redirect()->back()->with("failed", "User not found updated");
+        
+    }
+
     //// DEPOSITS
 
     public function deposits()

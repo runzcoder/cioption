@@ -26,6 +26,7 @@
                         <th>{{ ucfirst('username') }}</th>
                         <th>{{ ucfirst('email') }}</th>
                         <th>{{ucfirst("level")}}</th>
+                        <th>{{ucfirst("balance")}}</th>
                         <th>{{ ucfirst('Actions') }}</th>
                     </thead>
                     <tbody>
@@ -46,6 +47,7 @@
                                     <td>{{ $user->username }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{$user->level}}</td>
+                                    <td>${{$user->balance}}</td>
                                     <td>
                                         <div
                                             style="display: flex; flex-direction:row; justify-content: space-evenly; align-content: center;">
@@ -54,14 +56,22 @@
                                                 data-bs-target="#change_role{{ $loop->index }}"><i
                                                     class="text-danger bi  bi-pencil-fill"></i>
                                             </button>
+                                            <button data-bs-toggle="modal"
+                                            data-bs-target="#add_balance{{ $loop->index }}"><i
+                                                class="text-danger bi  bi-currency-dollar"></i>
+                                        </button>
                                            
                                         </div>
                                     </td>
                                 </tr>
                                 <tr><td colspan="5">
-                                @include("admin.include.change_role")    
+                                @include("admin.include.change_role")   
                                 </td></tr>
-                            @endforeach
+                            
+                                <tr><td colspan="5">
+                                    @include("admin.include.add_balance")    
+                                </td></tr>
+                                @endforeach
                         @endif
                     </tbody>
                 </table>
