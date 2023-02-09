@@ -73,16 +73,17 @@
                                         class="form-control form-control-lg" />
                                     </div>
 
-                                    <div class="form-checkjustify-content-center mb-5">
+                                    {{-- <div class="form-checkjustify-content-center mb-5">
                                         <input class="form-check-input me-2" type="checkbox" value=""
                                             id="form2Example3cg" /> &nbsp;
                                         <label class="form-check-label" for="form2Example3g">
-                                            I agree all statements in <a href="#!" class="text-body"> &nbsp; &nbsp;
+                                            I agree all statements in 
+                                            <a href="#!" class="text-body"> &nbsp; &nbsp;
                                                 &nbsp;
                                                 <u>Terms of
                                                     service</u></a>
                                         </label>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="d-flex justify-content-center">
                                         <button type="submit"
