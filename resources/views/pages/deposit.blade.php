@@ -31,7 +31,7 @@
                             @foreach ($deposits as $deposit)
                                 
                             <div class="row alert alert-info">
-                                    <div class="col-2"> <img width="30px" src={{ $deposit->payOption->currency->image ?? {{asset("images/dollar.png")}} }}
+                                    <div class="col-2"> <img width="30px" src={{ $deposit->payOption->currency->image ?? asset("images/dollar.png") }}
                                             alt=""> {{ strtoupper($deposit->payOption->currency->symbol ?? "USD") }}</div>
                                     <div class="col-4"> {{ strtoupper($deposit->payOption->currency->symbol ?? "USDT") }}
                                         ${{ $deposit->amount }}</div>
