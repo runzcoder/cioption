@@ -81,6 +81,9 @@ Route::get('/dashboard/withdrawal/', [App\Http\Controllers\DashboardController::
 Route::post('/dashboard/save_withdrawal/', [App\Http\Controllers\DashboardController::class, 'saveWithdrawal']);
 Route::get('/dashboard/cancel_withdrawal/{id}', [App\Http\Controllers\DashboardController::class, 'cancelWithdrawal'])->name('dashboard.cancel_withdrawal');
 
+Route::get("/dashboard/profile", [App\Http\Controllers\DashboardController::class, "viewProfile"])->name("dashboard.profile");
+Route::post("/dashboard/update_profile", [App\Http\Controllers\DashboardController::class, "updateProfile"])->name("dashboard.update_profile");
+
 //// GENERAL ROUTES
 Route::get("/get_pay_options", [App\Http\Controllers\DashboardController::class, 'getPayOptions'])->name('dashboard.get_pay_options');
 

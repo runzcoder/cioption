@@ -67,7 +67,7 @@
                 <!-- Avatar -->
                 <div>
                     <a href="#" class="avatar rounded-circle avatar-xl">
-                        <img src="https://th.bing.com/th/id/OIP.NVgDAkBBANO4lnKq3Xqg1wHaHa?w=209&h=209&c=7&r=0&o=5&pid=1.7"
+                        <img src="{{asset("images/user.png")}}"
                             alt="" srcset="">
                     </a>
                     <div class="mt-4">
@@ -211,7 +211,7 @@
                                 <a class="nav-link pr-lg-0" href="#" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <span class="avatar avatar-sm rounded-circle"> <img
-                                            src="https://th.bing.com/th/id/OIP.NVgDAkBBANO4lnKq3Xqg1wHaHa?w=209&h=209&c=7&r=0&o=5&pid=1.7"
+                                            src="{{asset("images/user.png")}}"
                                             width="30%" alt="" srcset="">
                                     </span>
                                 </a>
@@ -220,7 +220,7 @@
                                     <a href="#" class="dropdown-item">
 
                                         <span class="avatar avatar-sm rounded-circle"> <img
-                                                src="https://th.bing.com/th/id/OIP.NVgDAkBBANO4lnKq3Xqg1wHaHa?w=209&h=209&c=7&r=0&o=5&pid=1.7"
+                                                src="{{asset("images/user.png")}}"
                                                 width="30%" alt="" srcset="">
                                             <span>My profile</span>
                                     </a>
@@ -256,7 +256,7 @@
                                     aria-haspopup="true" aria-expanded="false">
                                     <div class="media media-pill align-items-center">
                                         <span class="avatar rounded-circle">
-                                            <img src="https://th.bing.com/th/id/OIP.NVgDAkBBANO4lnKq3Xqg1wHaHa?w=209&h=209&c=7&r=0&o=5&pid=1.7"
+                                            <img src="{{asset("images/user.png")}}"
                                                 width="30%" alt="" srcset="">
                                         </span>
                                         <div class="ml-2 d-none d-lg-block">
@@ -269,7 +269,7 @@
                                     <h6 class="px-0 dropdown-header">Hi, </h6>
                                     <a href="#" class="dropdown-item">
 
-                                        <img src="https://th.bing.com/th/id/OIP.NVgDAkBBANO4lnKq3Xqg1wHaHa?w=209&h=209&c=7&r=0&o=5&pid=1.7"
+                                        <img src="{{asset("images/user.png")}}"
                                             width="30%" alt="" srcset="">
                                         <span>My profile</span>
                                     </a>

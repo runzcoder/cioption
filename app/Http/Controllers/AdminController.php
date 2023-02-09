@@ -203,6 +203,10 @@ class AdminController extends Controller
                 "amount" => "required"
             ]
             );
+        if ($request->amount <= 0)
+        {
+            return redirect()->back()->with("failed", "Enter a valid amount");
+        }
 
         $user = User::find($request->user_id);
         if ($user)

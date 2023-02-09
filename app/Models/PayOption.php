@@ -13,6 +13,6 @@ class PayOption extends Model
 
     public function currency()
     {
-        return $this->hasOne(Currency::class, "id", "currencies");
+        return $this->hasOne(Currency::class,  "id", "currencies");
     }
 }

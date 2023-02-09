@@ -10,8 +10,10 @@ use App\Models\PayOption;
 use App\Models\Referral;
 use App\Models\Setting;
 use App\Models\TransactionHistory;
+use App\Models\User;
 use App\Models\Withdrawal;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +28,7 @@ class DashboardController extends Controller
     public function depositView()
     {
         $pay_options = PayOption::where("active", "yes")->get();
-        $deposits = Deposit::orderBy("id", "desc")->paginate(10);
+        $deposits = Deposit::orderBy("id", "desc")->where("user_id", Auth::user()->id)->paginate(10);
         return view("pages.deposit")->with("pay_options", $pay_options)->with("deposits", $deposits);
     }
     public function submitDeposit(Request $request)
@@ -120,8 +122,7 @@ class DashboardController extends Controller
             "amount" => "required"
         ]);
 
-        if (Auth::user()->balance < $request->amount)
-        {
+        if (Auth::user()->balance < $request->amount) {
             return redirect()->back()->with("failed", "Insufficient amount");
         }
         $investment_type = InvestmentType::find($request->investment_type_id);
@@ -188,19 +189,19 @@ class DashboardController extends Controller
 
     public function clemReward($id)
     {
-        
+
         $referral = Referral::find($id);
-        if ($referral 
-            && $referral->referred_by == Auth::user()->username 
-            && $referral->rewarded == "no")
-            {
-                $referral->rewarded = "yes";
-                $referral->save();
+        if (
+            $referral
+            && $referral->referred_by == Auth::user()->username
+            && $referral->rewarded == "no"
+        ) {
+            $referral->rewarded = "yes";
+            $referral->save();
 
-                BalanceController::updateBalance(Auth::user()->id, "reward", SettingsController::getSetting("referral_bonus"),"","Referral bonus");
-                return redirect("dashboard/referrals")->with("success", "You have been rewarded with $".SettingsController::getSetting("referral_bonus")." Referral bonus");
-
-            }
+            BalanceController::updateBalance(Auth::user()->id, "reward", SettingsController::getSetting("referral_bonus"), "", "Referral bonus");
+            return redirect("dashboard/referrals")->with("success", "You have been rewarded with $" . SettingsController::getSetting("referral_bonus") . " Referral bonus");
+        }
         return redirect("dashboard/referrals")->with("failed", "Not found");
     }
 
@@ -220,12 +221,11 @@ class DashboardController extends Controller
             "rate" => "required"
         ]);
 
-        if (Auth::user()->balance < $request->amount)
-        {
-                return redirect()->back()->with("failed", "Insufficient balance");
+        if (Auth::user()->balance < $request->amount) {
+            return redirect()->back()->with("failed", "Insufficient balance");
         }
 
-        DB::transaction(function()use($request){
+        DB::transaction(function () use ($request) {
             $withdrawal = Withdrawal::create([
                 "user_id" => Auth::user()->id,
                 "rate" => $request->rate,
@@ -237,12 +237,9 @@ class DashboardController extends Controller
             ]);
 
             BalanceController::updateBalance(Auth::user()->id, "withdrawal", $request->amount, "", "Withdrawal");
-
         });
 
         return redirect()->back()->with("success", "Withdrawal request successfull");
-
-        
     }
 
     public function cancelWithdrawal($id)
@@ -256,5 +253,53 @@ class DashboardController extends Controller
         }
 
         return redirect()->back()->with("failed", "Record not found");
+    }
+
+    public function viewProfile()
+    {
+        return view("Pages.profile");
+    }
+
+    public function updateProfile(Request $request)
+    {
+      
+       try {
+       
+        if($request->avatar)
+        {
+            $request->validate([
+                "avatar" => "image|mimes:jpg,jpeg,png|max:2048"
+            ]);
+            $ext = $request->file("avatar")->getClientOriginalExtension();
+            $filename = "avatar" . Auth::user()->id . "." . $ext;
+            $request->file("avatar")->storePubliclyAs("public/avatars", $filename);
+        }
+
+        $user = User::find(Auth::user()->user->id);
+       
+        if( $user->name){
+        $user->name = $request->name;
+        }
+
+        if(  $request->phone){
+             $user->phone = $request->phone_number;
+        }
+       
+        if ($request->country)
+        {
+           $user->country = $request->country; 
+        }
+
+         if ($request->avatar)
+        {
+           $user->avatar = $filename;
+        }
+        
+        $user->save();
+        return redirect()->back()->with("success", "profile updated");
+       }
+       catch(Exception $ex){}
+
+        return redirect()->back()->with("failed", "profile update failed");
     }
 }
