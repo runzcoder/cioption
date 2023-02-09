@@ -67,7 +67,7 @@
                 <!-- Avatar -->
                 <div>
                     <a href="#" class="avatar rounded-circle avatar-xl">
-                        <img src="{{asset("images/user.png")}}"
+                        <img src="{{asset("storage/avatars/".Auth::user()->avatar)  ?? asset("images/user.png")}}"
                             alt="" srcset="">
                     </a>
                     <div class="mt-4">
@@ -102,6 +102,14 @@
                             width="30%" alt="" srcset=""></span>
                     <span class="pt-2 btn-inner--icon d-block">Home</span>
                 </a>
+
+                <a href="{{ route('dashboard.profile') }}" class="text-sm btn btn-square">
+                    <span class="btn-inner--icon d-block"><img
+                            src="{{ asset('images/user.png') }}"
+                            width="30%" alt="" srcset=""></span>
+                    <span class="pt-2 btn-inner--icon d-block">Profile</span>
+                </a>
+
                 <a href="{{ route('dashboard.deposit_view') }}" class="text-sm btn btn-square  ">
                     <span class="btn-inner--icon d-block"><img
                             src="https://th.bing.com/th?id=OIP.l7xXyoS6qTNXDdJf36s5dwHaIj&w=232&h=268&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2"
@@ -211,7 +219,7 @@
                                 <a class="nav-link pr-lg-0" href="#" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
                                     <span class="avatar avatar-sm rounded-circle"> <img
-                                            src="{{asset("images/user.png")}}"
+                                            src="{{asset("storage/avatars/".Auth::user()->avatar)  ?? asset("images/user.png")}}"
                                             width="30%" alt="" srcset="">
                                     </span>
                                 </a>
@@ -220,7 +228,7 @@
                                     <a href="#" class="dropdown-item">
 
                                         <span class="avatar avatar-sm rounded-circle"> <img
-                                                src="{{asset("images/user.png")}}"
+                                                src="{{asset("storage/avatars/".Auth::user()->avatar)  ?? asset("images/user.png")}}"
                                                 width="30%" alt="" srcset="">
                                             <span>My profile</span>
                                     </a>
@@ -256,7 +264,7 @@
                                     aria-haspopup="true" aria-expanded="false">
                                     <div class="media media-pill align-items-center">
                                         <span class="avatar rounded-circle">
-                                            <img src="{{asset("images/user.png")}}"
+                                            <img src="{{asset("storage/avatars/".Auth::user()->avatar)  ?? asset("images/user.png")}}"
                                                 width="30%" alt="" srcset="">
                                         </span>
                                         <div class="ml-2 d-none d-lg-block">
@@ -269,7 +277,7 @@
                                     <h6 class="px-0 dropdown-header">Hi, </h6>
                                     <a href="#" class="dropdown-item">
 
-                                        <img src="{{asset("images/user.png")}}"
+                                        <img src="{{asset("storage/avatars/".Auth::user()->avatar)  ?? asset("images/user.png")}}"
                                             width="30%" alt="" srcset="">
                                         <span>My profile</span>
                                     </a>

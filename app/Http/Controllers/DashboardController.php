@@ -123,7 +123,7 @@ class DashboardController extends Controller
         ]);
 
         if (Auth::user()->balance < $request->amount) {
-            return redirect()->back()->with("failed", "Insufficient amount");
+            return redirect()->back()->with("failed", "Insufficient amount")->with("low_balance", "low_balance");
         }
         $investment_type = InvestmentType::find($request->investment_type_id);
 
@@ -268,22 +268,27 @@ class DashboardController extends Controller
         if($request->avatar)
         {
             $request->validate([
-                "avatar" => "image|mimes:jpg,jpeg,png|max:2048"
+                "avatar" => "image|mimes:jpg,jpeg,png,jfif|max:2048"
             ]);
             $ext = $request->file("avatar")->getClientOriginalExtension();
             $filename = "avatar" . Auth::user()->id . "." . $ext;
             $request->file("avatar")->storePubliclyAs("public/avatars", $filename);
         }
 
-        $user = User::find(Auth::user()->user->id);
+        $user = User::find(Auth::user()->id);
        
         if( $user->name){
         $user->name = $request->name;
         }
 
-        if(  $request->phone){
-             $user->phone = $request->phone_number;
+        if(  $request->phone_number){
+             $user->phone_number = $request->phone_number;
         }
+
+        
+        if(  $request->state){
+            $user->state = $request->state;
+       }
        
         if ($request->country)
         {
@@ -298,7 +303,9 @@ class DashboardController extends Controller
         $user->save();
         return redirect()->back()->with("success", "profile updated");
        }
-       catch(Exception $ex){}
+       catch(Exception $ex){
+        throw $ex;
+       }
 
         return redirect()->back()->with("failed", "profile update failed");
     }
