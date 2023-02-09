@@ -257,7 +257,7 @@ class DashboardController extends Controller
 
     public function viewProfile()
     {
-        return view("Pages.profile");
+        return view("pages.profile");
     }
 
     public function updateProfile(Request $request)
