@@ -192,7 +192,6 @@ class AdminController extends Controller
             return redirect()->back()->with("success", "User level updated");
         }
         return redirect()->back()->with("failed", "User not found updated");
-        
     }
 
     public function addBalance(Request $request)
