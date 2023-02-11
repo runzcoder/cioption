@@ -275,7 +275,7 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right dropdown-menu-arrow">
                                     <h6 class="px-0 dropdown-header">Hi, </h6>
-                                    <a href="#" class="dropdown-item">
+                                    <a href="{{route("dashboard.profile")}}" class="dropdown-item">
 
                                         <img src="{{asset("storage/avatars/".Auth::user()->avatar)  ?? asset("images/user.png")}}"
                                             width="30%" alt="" srcset="">
