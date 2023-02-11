@@ -47,7 +47,7 @@
         <div class="sidenav" id="sidenav-main">
             <!-- Sidenav header -->
             <div class="sidenav-header d-flex align-items-center">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/dashboard">
                     <img src="{{ asset('_eji/images/ZSB7XIxutSXh8sFDA20EQDMWBdVY7wW9tl33mFFr.jpg') }}"
                         class="navbar-brand-img" alt="logo">
                 </a>
