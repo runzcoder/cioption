@@ -16,10 +16,9 @@
                         <div class="page-next">
                             <nav aria-label="breadcrumb" class="d-inline-block">
                                 <ul class="mb-0 bg-white rounded shadow breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">{{env("APP_NAME")}}</a>
                                     </li>
 
-                                    <li class="breadcrumb-item active" aria-current="page">Faq</li>
+                                    <li class="breadcrumb-item active" aria-current="page">{{env("APP_NAME")}} <i class="bi bi-chevron-right"></i> Faq</li>
                                 </ul>
                             </nav>
                         </div>
@@ -40,7 +39,7 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="pb-2 mb-4 text-center section-title">
-                        <h4 class="mb-4">Find the help you need</h4>
+                        <h4 class="mb-4 text-light">Find the help you need</h4>
                         <p class="mx-auto para-desc text-muted">Launch your campaign and benefit from our expertise on
                             designing and managing conversion centered bootstrap4 html page.</p>
                     </div>
@@ -81,7 +80,6 @@
                     </div>
                 </div>
                 <!--end col-->
-                403 500 419 255 405
 
                 <div class="pt-2 mt-4 col-lg-4 col-md-6 col-12">
                     <div class="text-center bg-white border-0 rounded card explore-feature">
@@ -107,7 +105,7 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="pb-2 mb-4 text-center section-title">
-                        <h4 class="mb-4">Get Started</h4>
+                        <h4 class="mb-4 text-light">Get Started</h4>
                         <p class="mx-auto para-desc text-muted">Launch your campaign and benefit from our expertise on
                             designing and managing conversion centered bootstrap4 html page.</p>
                     </div>
@@ -124,7 +122,7 @@
                                 <a data-toggle="collapse" href="#collapse1" class="faq position-relative"
                                     aria-expanded="true" aria-controls="collapse1">
                                     <div class="p-3 border-0 shadow card-header bg-light" id="heading1">
-                                        <h6 class="mb-0 title">How can i withdraw</h6>
+                                        <h6 class="mb-0 text-dark">How can i withdraw</h6>
                                     </div>
                                 </a>
                                 <div id="collapse1" class="collapse show" aria-labelledby="heading1"
@@ -136,7 +134,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>  
                 <!--end col-->
             </div>
             <!--end row-->
@@ -151,10 +149,10 @@
                             <i class="mb-0 rounded uil uil-envelope-check d-block h3"></i>
                         </div>
                         <div class="ml-4 content">
-                            <h5 class="mb-1"><a href="javascript:void(0)" class="text-dark">Get in Touch !</a></h5>
+                            <h5 class="mb-1"><a href="javascript:void(0)" class="text-light">Get in Touch !</a></h5>
                             <p class="mb-0 text-muted">This is required when, for text is not yet available.</p>
                             <div class="mt-2">
-                                <a href="contact.html" class="btn btn-sm btn-soft-primary">Submit a Request</a>
+                                <a href="contact.html" class="btn btn-sm btn-soft-primary"><h6>Submit a Request</h6></a>
                             </div>
                         </div>
                     </div>

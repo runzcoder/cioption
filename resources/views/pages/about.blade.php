@@ -12,8 +12,7 @@
                     <div class="page-next">
                         <nav aria-label="breadcrumb" class="d-inline-block">
                             <ul class="mb-0 bg-white rounded shadow breadcrumb">
-                                <li class="breadcrumb-item"><a href="/">{{env("APP_NAME")}}</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                                <li class="breadcrumb-item active" aria-current="page">{{env("APP_NAME")}} <i class="bi bi-chevron-right"></i> About Us</li>
                             </ul>
                         </nav>
                     </div>
@@ -48,7 +47,7 @@
                         alt="">
                     <div class="play-icon">
                         <!-- <a href="http://vimeo.com/287684225" class="play-btn video-play-icon">
-                            <i class="bg-white shadow mdi mdi-play text-primary rounded-circle"></i>
+                            <i class="bg-white shadow bi bi-play text-primary rounded-circle"></i>
                         </a> -->
                     </div>
                 </div>
@@ -80,8 +79,8 @@
         <div class="row justify-content-center">
             <div class="col-12">
                 <div class="pb-2 mb-4 text-center section-title">
-                    <h6 class="text-primary">Get Started</h6>
-                    <h4 class="mb-4 title">How to get started ?</h4>
+                    <h6 class="text-dark">Get Started</h6>
+                    <h4 class="mb-4 text-dark">How to get started ?</h4>
 
                 </div>
             </div>
@@ -150,7 +149,7 @@
                 <div class="col-md-8">
                     <div class="text-center section-title text-md-left">
                         <h4 class="mb-3 text-white title title-dark">The Better Way to Trade &amp; Invest</h4>
-                        <p class="mb-0 text-white">Dynamo Vest offers a better way to trade and invest in the forex market by providing powerful trading platforms, high leverage options, fast execution, ultimate security and 24/7 live chat support. With our professional and reliable services, you can make informed decisions and potentially maximize your returns while minimizing risk.</p>
+                        <p class="mb-0 text-white">{{ucfirst(env("APP_NAME"))}} offers a better way to trade and invest in the forex market by providing powerful trading platforms, high leverage options, fast execution, ultimate security and 24/7 live chat support. With our professional and reliable services, you can make informed decisions and potentially maximize your returns while minimizing risk.</p>
                     </div>
                 </div>
                 <!--end col-->

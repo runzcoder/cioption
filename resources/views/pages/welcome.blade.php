@@ -289,8 +289,8 @@
                         </h4>
                         <p class="text-muted">Get your hands on our customized Trading Platform with the comfort of freely trading on the move, to experience truly liberating trading sessions.</p>
 
-                        <a href="about.html" class="mt-3 h6 text-primary">Find Out More <i
-                                class="mdi mdi-chevron-right"></i></a>
+                        <a href="about.html" class="mt-3 h6 btn btn-primary text-light">Find Out More <i
+                                class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
                 <!--end col-->
@@ -308,8 +308,8 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <div class="pb-2 mb-4 text-center section-title">
-                        <h4 class="mb-4 title"><span class="text-primary">Our Investment Packages</span></h4>
-                        <p class="mx-auto mb-0 para-desc text-muted">Choose how you want to invest with us</p>
+                        <h4 class="mb-4 title"><span class="text-light">Our Investment Packages</span></h4>
+                        <p class="mx-auto mb-0 para-desc text-light">Choose how you want to invest with us</p>
                     </div>
                 </div>
                 <!--end col-->
@@ -492,8 +492,8 @@
             <div class="row justify-content-center">
                 <div class="text-center col-12">
                     <div class="pb-2 mb-4 section-title">
-                        <h4 class="mb-4 title">Cryptocurrency</h4>
-                        <p class="mx-auto mb-0 text-muted para-desc">
+                        <h4 class="mb-4 text-light">Cryptocurrency</h4>
+                        <p class="mx-auto mb-0 text-light para-desc">
                             Trade and invest Top Cryptocurrency</p>
                     </div>
                 </div>
@@ -543,36 +543,7 @@
 
 
     <!-- Testimonial Section Start -->
-    <section class="mt-5 overflow-hidden section">
-        <div class="container mt-100 mt-60">
-            <div class="row justify-content-center">
-                <div class="text-center col-12">
-                    <div class="pb-2 mb-4 section-title">
-                        <h4 class="mb-4 title">What our Customer says!</h4>
-                        <p class="mx-auto mb-0 text-muted para-desc">Don&#039;t take our word for it, here&#039;s what some of our clients have to say about us</p>
-                    </div>
-                </div>
-                <!--end col-->
-            </div>
-            <!--end row-->
-
-            <div class="mt-4 row justify-content-center">
-                <div class="col-lg-8 col-12">
-                    <div id="single-owl" class="owl-carousel owl-theme">
-                        
-                        <!-- Review Start -->
-
-                    </div>
-                    <!-- Review End -->
-                </div>
-                <!--end owl-fade-->
-            </div>
-            <!--end col-->
-        </div>
-        <!--end row-->
-        </div>
-        <!--end container-->
-    </section>
+    
 
     <!--End Testimonial Section  -->
 
